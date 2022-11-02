@@ -1,25 +1,10 @@
-import React from "react";
-import { 
-  View,
-  Text,
-  StyleSheet
- } from "react-native";
+import React from "react"
+import { Login } from "./src/containers/Login"
 
 const App = () => {
-  return(
-    <View style={styles.headersContainer}>
-      <Text>Hello World!</Text>
-    </View>
-
+  return (
+    <Login />
   )
 }
-
-const styles = StyleSheet.create({
-    headersContainer: {
-        display: "flex",
-        alignItems: "center",
-        marginTop: 50,
-    }
-})
 
 export default App
