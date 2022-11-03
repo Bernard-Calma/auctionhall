@@ -16,6 +16,6 @@ export const LoginButton = (props) => {
         loginButton: {
             fontSize: 25,
             textAlign: "left",
-            marginLeft: 200
+            marginLeft: 200,
         }
     })

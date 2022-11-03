@@ -43,6 +43,7 @@ export const Login = () => {
         })
         .then(response => response.json())
         .then(data => {
+            setUser({...user, "message":data.status.message})
             console.log(data)
         })
     }
@@ -64,11 +65,11 @@ export const Login = () => {
                     name = "password"
                     secureTextEntry = {true}
                     />    
+                <Text style={{margin: "auto", textAlign: "center",marginBottom: 50}}>{user.message}</Text>
                 <LoginButton 
                     text = "Login"
                     handleSubmit = {handleLogin}
                 />
-                <Text style={{marginLeft: '30%'}}>{user.message}</Text>
             </View>
 
             {/* <Text>{user.email}</Text>
