@@ -13,8 +13,10 @@ const backendURL = "http://localhost:8000"
 const userRoute = "/api/v1/auctions/users"
 export const SignUp = () => {
     const [user, setUser] = useState({
-        email: "email",
-        password: "password",
+        username: null,
+        email: null,
+        password: null,
+        passwordCheck: null,
         message: null,
     })
 
@@ -27,25 +29,36 @@ export const SignUp = () => {
         setUser({...user, [target.name]: value})
     }
 
-    const handleLogin = (e) => {
-        // console.log("Clicked", user)
-        console.log(`${backendURL}${userRoute}/login`, "URL")
-        fetch(`${backendURL}${userRoute}/login`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            credentials: "include",
-            body: JSON.stringify({
-                email: user.email,
-                password: user.password
+    const handleSignUp = (e) => {
+        console.log("Clicked", user)
+        if (!user.email || !user.username || !user.password || !user.passwordCheck) {
+            setUser({...user, "message": "Please fill up all fields"})
+        } else if (user.password !== user.passwordCheck) {
+            setUser({...user, "message": "Password should match"})    
+        } else if (user.password.length < 9) {
+            setUser({...user, "message": "Password should be at least 9 characters"})    
+        } else {
+            
+            console.log(`${backendURL}${userRoute}/login`, "URL")
+            fetch(`${backendURL}${userRoute}/login`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                credentials: "include",
+                body: JSON.stringify({
+                    email: user.email,
+                    password: user.password
+                })
             })
-        })
-        .then(response => response.json())
-        .then(data => {
-            setUser({...user, "message":data.status.message})
-            console.log(data)
-        })
+            .then(response => response.json())
+            .then(data => {
+                console.log(user.email, "user email")
+                setUser({...user, "message":data.status.message})
+                console.log(data)
+            })
+        }
+        
     }
     console.log("Sign up")
     return(
@@ -57,12 +70,14 @@ export const SignUp = () => {
                     handleChange = {handleChange}
                     user = {user}
                     name = "username"
+                    required
                     />
                 <Textbox 
                     style = {styles.inputBox}
                     handleChange = {handleChange}
                     user = {user}
                     name = "email"
+                    required
                     />
                 <Textbox 
                     style = {styles.inputBox}
@@ -81,7 +96,7 @@ export const SignUp = () => {
                 <Text style={{margin: "auto", textAlign: "center",marginBottom: 50}}>{user.message}</Text>
                 <LoginButton 
                     text = "Sign Up"
-                    handleSubmit = {handleLogin}
+                    handleSubmit = {handleSignUp}
                 />
             </View>
 
