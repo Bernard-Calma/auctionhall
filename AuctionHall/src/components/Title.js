@@ -13,6 +13,6 @@ const styles = StyleSheet.create({
         fontSize: 50,
         fontFamily: "courier",
         textAlign: "center",
-        marginTop: "50%"
+        marginTop: "40%",
     }
 })
