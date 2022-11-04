@@ -12,12 +12,18 @@ const App = () => {
     setUser({...user, "signUp": !user.signUp})
     console.log(user)
   }
-  return (
-    <Login 
-      handleSignUp = {handleSignUp}
-      user = {user}
-      />
-  )
+  if (!user.loggedIn) {
+    return (
+      <Login 
+        handleSignUp = {handleSignUp}
+        user = {user}
+        setUser = {setUser}
+        />
+    )
+  } else {
+    
+  }
+
 }
 
 export default App

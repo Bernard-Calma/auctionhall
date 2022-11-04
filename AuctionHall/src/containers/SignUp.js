@@ -28,7 +28,6 @@ export const SignUp = () => {
         // console.log(e.nativeEvent)
         setUser({...user, [target.name]: value})
     }
-
     const handleSignUp = (e) => {
         console.log("Clicked", user)
         if (!user.email || !user.username || !user.password || !user.passwordCheck) {
@@ -39,8 +38,8 @@ export const SignUp = () => {
             setUser({...user, "message": "Password should be at least 9 characters"})    
         } else {
             
-            console.log(`${backendURL}${userRoute}/login`, "URL")
-            fetch(`${backendURL}${userRoute}/login`, {
+            // console.log(`${backendURL}${userRoute}/login`, "URL")
+            fetch(`${backendURL}${userRoute}/register`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -48,19 +47,22 @@ export const SignUp = () => {
                 credentials: "include",
                 body: JSON.stringify({
                     email: user.email,
+                    username: user.username,
                     password: user.password
                 })
             })
             .then(response => response.json())
             .then(data => {
-                console.log(user.email, "user email")
+                // console.log(user.email, "user email")
                 setUser({...user, "message":data.status.message})
-                console.log(data)
+                console.log("Status Code: ", data.status.code)
+                
+                // props.setUser()
             })
         }
         
     }
-    console.log("Sign up")
+    // console.log("Sign up")
     return(
         <View style={styles.headersContainer}>
             <Title style = {styles.title}/>

@@ -45,8 +45,16 @@ export const Login = (props) => {
         })
         .then(response => response.json())
         .then(data => {
+            // console.log("Status Code: ", data.status.code)
+            
+            if (data.status.code === 200) {
+                props.setUser({
+                    user: data.data,
+                    loggedIn: true,
+                })
+            }
             setUser({...user, "message":data.status.message})
-            console.log(data)
+            // console.log(data)
         })
     }
     if (!props.user.signUp) {
