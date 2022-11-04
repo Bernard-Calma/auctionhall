@@ -8,10 +8,12 @@ import {
 import { Title } from "../components/Title";
 import { Textbox } from "../components/Textbox";
 import { LoginButton } from "../components/buttons/LoginButton";
+import { LoginFooter } from "./LoginFooter";
+import { SignUp } from "./SignUp";
 
 const backendURL = "http://localhost:8000"
 const userRoute = "/api/v1/auctions/users"
-export const Login = () => {
+export const Login = (props) => {
     const [user, setUser] = useState({
         email: "email",
         password: "password",
@@ -43,43 +45,73 @@ export const Login = () => {
         })
         .then(response => response.json())
         .then(data => {
+            // console.log("Status Code: ", data.status.code)
+            
+            if (data.status.code === 200) {
+                props.setUser({
+                    user: data.data,
+                    loggedIn: true,
+                })
+            }
             setUser({...user, "message":data.status.message})
-            console.log(data)
+            // console.log(data)
         })
     }
-
-    return(
-        <View style={styles.headersContainer}>
-            <Title style = {styles.title}/>
-            <View>
-                <Textbox 
-                    style = {styles.inputBox}
-                    handleChange = {handleChange}
-                    user = {user}
-                    name = "email"
+    if (!props.user.signUp) {
+        return(
+            <View style={styles.headersContainer}>
+                <Title style = {styles.title}/>
+                <View>
+                    <Textbox 
+                        style = {styles.inputBox}
+                        handleChange = {handleChange}
+                        user = {user}
+                        name = "email"
+                        />
+                    <Textbox 
+                        style = {styles.inputBox}
+                        handleChange = {handleChange}
+                        user = {user}
+                        name = "password"
+                        secureTextEntry = {true}
+                        />    
+                    <Text style={{margin: "auto", textAlign: "center",marginBottom: 50}}>{user.message}</Text>
+                    <LoginButton 
+                        text = "Login"
+                        handleSubmit = {handleLogin}
                     />
-                <Textbox 
-                    style = {styles.inputBox}
-                    handleChange = {handleChange}
-                    user = {user}
-                    name = "password"
-                    secureTextEntry = {true}
-                    />    
-                <Text style={{margin: "auto", textAlign: "center",marginBottom: 50}}>{user.message}</Text>
-                <LoginButton 
-                    text = "Login"
-                    handleSubmit = {handleLogin}
+                </View>
+                < LoginFooter
+                    handleSignUp = {props.handleSignUp} 
+                    styles = {styles}
+                    user = {props.user}/>
+              </View>
+        )
+    } else {
+        return(
+            <>
+                <SignUp handleSignUp = {props.handleSignUp}/>
+                < LoginFooter
+                    handleSignUp = {props.handleSignUp} 
+                    styles = {StyleSheet.create({
+                        footer: {
+                            marginTop: 300,
+                            marginBottom: 50,
+                            marginLeft: 100,
+                        },signUp: {
+                            color: "gray",
+                            fontSize: 20,
+                            fontWeight: "200"
+                        }
+                    })}
+                    user = {props.user}
                 />
-            </View>
+            </>
 
-            {/* <Text>{user.email}</Text>
-            <Text>{user.password}</Text> */}
-            <Text
-                style = {styles.footer}
-            >Don't have an account? <Text style= {styles.signUp}>Sign Up</Text></Text>
-        </View>
+            
+        )
+    }
     
-    )
 }
     
 const styles = StyleSheet.create({
@@ -99,6 +131,7 @@ const styles = StyleSheet.create({
         margin: "5%",
     },
     footer: {
+        marginLeft: 0,
         marginTop: 350,
         marginBottom: 50,
     },
