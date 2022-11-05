@@ -1,5 +1,6 @@
 import React, { useState } from "react"
 import { Login } from "./src/containers/Login"
+import { Main } from "./src/containers/Main"
 
 const App = () => {
   const [user, setUser] = useState({
@@ -21,7 +22,11 @@ const App = () => {
         />
     )
   } else {
-    
+    return (
+      <Main 
+        user = {user}
+      />
+    )
   }
 
 }
