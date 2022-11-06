@@ -5,7 +5,6 @@ import {
     StyleSheet
 } from "react-native";
 
-import { Title } from "../components/Title";
 import { Textbox } from "../components/Textbox";
 import { LoginButton } from "../components/buttons/LoginButton";
 import { LoginFooter } from "./LoginFooter";
@@ -59,9 +58,9 @@ export const Login = (props) => {
     }
     if (!props.user.signUp) {
         return(
-            <View style={styles.headersContainer}>
-                <Title style = {styles.title}/>
-                <View>
+            <View style={styles.loginContainer}>
+                <Text style={styles.title}>Auction Hall</Text>
+                <View style = {styles.inputContainer}>
                     <Textbox 
                         style = {styles.inputBox}
                         handleChange = {handleChange}
@@ -83,7 +82,7 @@ export const Login = (props) => {
                 </View>
                 < LoginFooter
                     handleSignUp = {props.handleSignUp} 
-                    styles = {styles}
+                    styles = {styles.footer}
                     user = {props.user}/>
               </View>
         )
@@ -115,29 +114,37 @@ export const Login = (props) => {
 }
     
 const styles = StyleSheet.create({
-    headersContainer: {
-        backgroundColor: "#FFFFFF",
+    inputContainer: {
         flex: 1,
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "space-between"
-    },
-    inputBox: {
-        width: 250,
+        borderColor: 'green',
         borderWidth: 1,
-        height: 40,
-        borderRadius: 10,
-        padding: 10,
-        margin: "5%",
+        alignContent: 'center'
     },
     footer: {
         marginLeft: 0,
         marginTop: 350,
         marginBottom: 50,
     },
+    loginContainer: {
+        borderColor: 'red',
+        borderWidth: 1,
+        flex: 1,
+        alignContent: 'center',
+        justifyContent: "space-between"
+    },
     signUp: {
         color: "gray",
         fontSize: 20,
         fontWeight: "200"
-    }
+    },
+    title: {
+        // borderColor: "blue",
+        // borderWidth: 1,
+        flex: .3,
+        fontSize: 50,
+        fontFamily: "courier",
+        textAlign: 'center',
+        paddingTop: 100,
+        marginBottom: -100,
+    },
 })

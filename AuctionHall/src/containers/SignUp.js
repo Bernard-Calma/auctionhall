@@ -5,7 +5,6 @@ import {
     StyleSheet
 } from "react-native";
 
-import { Title } from "../components/Title";
 import { Textbox } from "../components/Textbox";
 import { LoginButton } from "../components/buttons/LoginButton";
 
@@ -65,7 +64,6 @@ export const SignUp = () => {
     // console.log("Sign up")
     return(
         <View style={styles.headersContainer}>
-            <Title style = {styles.title}/>
             <View>
             <Textbox 
                     style = {styles.inputBox}

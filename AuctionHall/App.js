@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+import { SafeAreaView, StyleSheet, StatusBar } from "react-native"
 import { Login } from "./src/containers/Login"
 import { Main } from "./src/containers/Main"
 
@@ -15,20 +16,38 @@ const App = () => {
   }
   if (!user.loggedIn) {
     return (
-      <Login 
-        handleSignUp = {handleSignUp}
-        user = {user}
-        setUser = {setUser}
+      <SafeAreaView style = {styles.safeAreaView}>
+        <Login 
+          handleSignUp = {handleSignUp}
+          user = {user}
+          setUser = {setUser}
         />
+      </SafeAreaView>
     )
   } else {
     return (
-      <Main 
-        user = {user}
-      />
+      <SafeAreaView style = {styles.safeAreaView}>
+        <Main 
+          user = {user}
+        />
+      </SafeAreaView>
+
     )
   }
 
 }
+
+const styles = StyleSheet.create({
+  login: {
+    borderColor: 'red',
+    borderWidth: 1,
+  },
+  safeAreaView: {
+    // borderColor: 'red',
+    // borderWidth: 1,
+    flex: 1,
+    marginTop: 50
+  },
+})
 
 export default App

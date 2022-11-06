@@ -10,7 +10,7 @@ export const Main = (props) => {
     return(
         <SafeAreaView style = {styles.mainContainer}>
             {/* Search Bar */}
-            <SearchBar />
+            <SearchBar style = {styles.searchBar}/>
             <TopNavBar style = { styles.topNavBar }/>
             <View style = {styles.photosContainer}>
                 {/* List of all auction photos */}
@@ -28,6 +28,9 @@ const styles = StyleSheet.create({
         height: '90%',
         justifyContent: 'space-between',
         marginTop: 60,
+    },
+    searchBar: {
+        margin: 5,
     },
     topNavBar: {
         marginTop: 0,
