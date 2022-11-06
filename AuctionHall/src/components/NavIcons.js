@@ -1,21 +1,20 @@
 import { Pressable, Image, View } from "react-native";
+import { useState } from "react";
 
-export const NavIcon = (props) => {
+export const NavIcon = (properties ) => {
+    
+    // console.log(properties.title, "Nav Icon", properties.imageFilePath, "Path")
     return(
         <View style = {{
             width: '20%',
         }}>
-            <Pressable
-            style = {{
-                borderWidth: 1,
-                borderRadius: 60,
-                width: '50%',
-            }}
-            >
+            <Pressable>
                 <Image
-                    source = {{
-                        uri: props.imageFilePath
+                    style = {{
+                        height: 40,
+                        width: '50%',
                     }}
+                    source = {properties.imageFilePath}
                 />
             </Pressable>
         </View>

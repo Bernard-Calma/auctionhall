@@ -1,5 +1,5 @@
 import React from "react"
-import { View, Text, StyleSheet, } from "react-native"
+import { SafeAreaView, View, Text, StyleSheet, } from "react-native"
 import { BottomNavBar } from "../components/BottomNavBar"
 
 import { SearchBar } from "../components/SearchBar"
@@ -8,7 +8,7 @@ import { TopNavBar } from "../components/TopNavBar"
 export const Main = (props) => {
     // console.log("Props :", props)
     return(
-        <View style = {styles.mainContainer}>
+        <SafeAreaView style = {styles.mainContainer}>
             {/* Search Bar */}
             <SearchBar />
             <TopNavBar style = { styles.topNavBar }/>
@@ -17,7 +17,7 @@ export const Main = (props) => {
                 <Text>Photos</Text>
             </View>
             <BottomNavBar/>
-        </View>
+        </SafeAreaView>
     )
 }
 
