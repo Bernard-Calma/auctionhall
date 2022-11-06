@@ -73,17 +73,19 @@ export const Login = (props) => {
                         user = {user}
                         name = "password"
                         secureTextEntry = {true}
-                        />    
-                    <Text style={{margin: "auto", textAlign: "center",marginBottom: 50}}>{user.message}</Text>
-                    <LoginButton 
-                        text = "Login"
-                        handleSubmit = {handleLogin}
-                    />
+                        />
+                    <View style = {styles.loginButtonContainer}>
+                        <Text style={{textAlign: "center"}}>{user.message}</Text>
+                        <LoginButton 
+                            text = "Login"
+                            handleSubmit = {handleLogin}
+                        />
+                    </View>    
                 </View>
                 < LoginFooter
                     handleSignUp = {props.handleSignUp} 
-                    styles = {styles.footer}
-                    user = {props.user}/>
+                    user = {props.user}
+                />
               </View>
         )
     } else {
@@ -116,18 +118,18 @@ export const Login = (props) => {
 const styles = StyleSheet.create({
     inputContainer: {
         flex: 1,
-        borderColor: 'green',
-        borderWidth: 1,
-        alignContent: 'center'
+        // borderColor: 'green',
+        // borderWidth: 1,
+        alignContent: 'center',
     },
     footer: {
-        marginLeft: 0,
-        marginTop: 350,
-        marginBottom: 50,
+        borderWidth: 5,
+        borderColor: 'black',
+        marginLeft: 20,
     },
     loginContainer: {
-        borderColor: 'red',
-        borderWidth: 1,
+        // borderColor: 'red',
+        // borderWidth: 1,
         flex: 1,
         alignContent: 'center',
         justifyContent: "space-between"

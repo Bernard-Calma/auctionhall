@@ -3,7 +3,7 @@ import { View, Text, StyleSheet } from "react-native"
 
 export const LoginButton = (props) => {
     return (
-        <View>
+        <View style = {styles.container}>
             <Text 
                 style = {styles.loginButton}
                 onPress = {props.handleSubmit}
@@ -15,7 +15,8 @@ export const LoginButton = (props) => {
     const styles = StyleSheet.create({
         loginButton: {
             fontSize: 25,
-            textAlign: "left",
+            textAlign: "right",
             marginLeft: 200,
+            marginRight: 25,
         }
     })
