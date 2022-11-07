@@ -10,6 +10,7 @@ export const Textbox = (props) => {
                 onChange={props.handleChange}
                 style = {styles.textBox}
                 secureTextEntry = {props.secureTextEntry}
+                value = {props.value}
             />
         </View>
 
@@ -18,11 +19,13 @@ export const Textbox = (props) => {
 
 const styles = StyleSheet.create({
     textBox: {
+        width: "90%",
         borderWidth: 1,
         borderRadius: 10,
         height: 60,
         paddingLeft: 20,
-        margin: 20,
+        marginBottom: 30,
+        marginLeft: 20,
         fontSize: 25,
     },
 })

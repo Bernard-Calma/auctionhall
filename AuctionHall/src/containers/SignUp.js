@@ -28,13 +28,13 @@ export const SignUp = () => {
         setUser({...user, [target.name]: value})
     }
     const handleSignUp = (e) => {
-        console.log("Clicked", user)
+        // console.log("Clicked", user)
         if (!user.email || !user.username || !user.password || !user.passwordCheck) {
             setUser({...user, "message": "Please fill up all fields"})
+        } else if (user.password.length < 9) {
+            setUser({...user, "message": "Password should be at least 9 characters", "password": "", "passwordCheck": ""}) 
         } else if (user.password !== user.passwordCheck) {
             setUser({...user, "message": "Password should match"})    
-        } else if (user.password.length < 9) {
-            setUser({...user, "message": "Password should be at least 9 characters"})    
         } else {
             
             // console.log(`${backendURL}${userRoute}/login`, "URL")
@@ -54,7 +54,7 @@ export const SignUp = () => {
             .then(data => {
                 // console.log(user.email, "user email")
                 setUser({...user, "message":data.status.message})
-                console.log("Status Code: ", data.status.code)
+                // console.log("Status Code: ", data.status.code)
                 
                 // props.setUser()
             })
@@ -63,34 +63,31 @@ export const SignUp = () => {
     }
     // console.log("Sign up")
     return(
-        <View style={styles.headersContainer}>
-            <View>
+        <View style={styles.container}>
             <Textbox 
-                    style = {styles.inputBox}
                     handleChange = {handleChange}
                     user = {user}
                     name = "username"
                     required
                     />
                 <Textbox 
-                    style = {styles.inputBox}
                     handleChange = {handleChange}
                     user = {user}
                     name = "email"
                     required
                     />
                 <Textbox 
-                    style = {styles.inputBox}
                     handleChange = {handleChange}
                     user = {user}
                     name = "password"
+                    value = {user['password']}
                     secureTextEntry = {true}
                     />
                 <Textbox 
-                    style = {styles.inputBox}
                     handleChange = {handleChange}
                     user = {user}
                     name = "passwordCheck"
+                    value = {user['passwordCheck']}
                     secureTextEntry = {true}
                     />        
                 <Text style={{margin: "auto", textAlign: "center",marginBottom: 50}}>{user.message}</Text>
@@ -98,7 +95,6 @@ export const SignUp = () => {
                     text = "Sign Up"
                     handleSubmit = {handleSignUp}
                 />
-            </View>
 
             {/* <Text>{user.email}</Text>
             <Text>{user.password}</Text> */}
@@ -108,20 +104,11 @@ export const SignUp = () => {
 }
     
 const styles = StyleSheet.create({
-    headersContainer: {
-        backgroundColor: "#FFFFFF",
+    container: {
+        // borderColor: 'red',
+        // borderWidth: 1,
         flex: 1,
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "space-between"
-    },
-    inputBox: {
-        width: 250,
-        borderWidth: 1,
-        height: 40,
-        borderRadius: 10,
-        padding: 10,
-        margin: "5%",
+        alignContent: 'center',
     },
     footer: {
         marginTop: "auto",

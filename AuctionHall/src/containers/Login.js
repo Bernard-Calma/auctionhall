@@ -30,7 +30,7 @@ export const Login = (props) => {
 
     const handleLogin = (e) => {
         // console.log("Clicked", user)
-        console.log(`${backendURL}${userRoute}/login`, "URL")
+        // console.log(`${backendURL}${userRoute}/login`, "URL")
         fetch(`${backendURL}${userRoute}/login`, {
             method: "POST",
             headers: {
@@ -91,6 +91,7 @@ export const Login = (props) => {
     } else {
         return(
             <>
+                <Text style={styles.title}>Auction Hall</Text>
                 <SignUp handleSignUp = {props.handleSignUp}/>
                 < LoginFooter
                     handleSignUp = {props.handleSignUp} 
