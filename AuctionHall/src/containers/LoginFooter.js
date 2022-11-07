@@ -1,34 +1,53 @@
-import React from "react";
-import { Text } from "react-native"
+import { View, Text, StyleSheet } from "react-native"
 
 export const LoginFooter = (props) => {
     if (!props.user.signUp) {
         return(
-            <Text
-                style = {props.styles.footer}
-            >
-                Don't have an account? 
-                <Text 
-                    style= {props.styles.signUp}
-                    onPress = {props.handleSignUp}
-                >
-                    Sign Up
+            <View style={styles.container}>
+                <Text style={styles.text}>
+                    Don't have an account? 
+                    </Text>
+                    <Text
+                        style={styles.link} 
+                        onPress = {props.handleSignUp}
+                    >
+                        Sign Up
                 </Text>
-            </Text>
+            </View>
         )
     } else {
         return (
-            <Text
-                style = {props.styles.footer}
-            >
+        <View style = {styles.container}>
+            <Text style={styles.text}>
                 Already have an account? 
-                <Text 
-                    style= {props.styles.signUp}
-                    onPress = {props.handleSignUp}
-                >
-                    Sign In
-                </Text>
+            </Text>   
+            <Text
+                style={styles.link}
+                onPress = {props.handleSignUp}
+            >
+                Sign In
             </Text>
+        </View>
         )
     }
 }
+
+const styles = StyleSheet.create({
+    container: {
+        // borderColor: "red",
+        // borderWidth: 1,
+        marginLeft: 20,
+        flexDirection: 'row',
+        marginBottom: 50,
+    },
+    text: {
+        fontSize: 20,
+    },
+    link: {
+        // borderColor: 'green',
+        // borderWidth: 1,
+        marginLeft: 5,
+        fontSize: 20,
+        color: 'gray'
+    }
+})
