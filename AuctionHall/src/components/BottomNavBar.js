@@ -2,7 +2,6 @@ import { useState } from "react";
 import { View } from "react-native";
 import { NavIcon } from "./NavIcons";
 
-
 export const BottomNavBar = () => {
     const [icons, setIcons] = useState([{
         title: 'home',
@@ -13,7 +12,7 @@ export const BottomNavBar = () => {
         path: require("../assets/images/auctions.png"),
     },
     {
-        title: 'camera',
+        title: 'Add Auction',
         path: require("../assets/images/camera.png"),
     },
     {

@@ -10,7 +10,7 @@ import { LoginButton } from "../components/buttons/LoginButton";
 import { LoginFooter } from "./LoginFooter";
 import { SignUp } from "./SignUp";
 
-const backendURL = "http://localhost:8000"
+const backendURL = "https://auctionhall-back-end.herokuapp.com/"
 const userRoute = "/api/v1/auctions/users"
 export const Login = (props) => {
     const [user, setUser] = useState({
