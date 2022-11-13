@@ -24,29 +24,24 @@ const App = () => {
     setUser({...user, "signUp": !user.signUp})
     console.log(user)
   }
-  if (!user.loggedIn) {
-    return (
-      <SafeAreaView style = {styles.safeAreaView}>
-        <Login 
-          handleSignUp = {handleSignUp}
-          user = {user}
-          setUser = {setUser}
-        />
-      </SafeAreaView>
-    )
-  } else {
-    return (
-      <SafeAreaView style = {styles.safeAreaView}>
-        <Main 
-          user = {user}
-          view = {view}
-          handlePress = {handlePress}
-        />
-      </SafeAreaView>
 
-    )
-  }
-
+  return (
+    <SafeAreaView style = {styles.safeAreaView}>
+      { !user.loggedIn ?
+          <Login 
+            handleSignUp = {handleSignUp}
+            user = {user}
+            setUser = {setUser}
+          />
+        :
+          <Main 
+            user = {user}
+            view = {view}
+            handlePress = {handlePress}
+          />
+      }
+    </SafeAreaView>
+  )
 }
 
 const styles = StyleSheet.create({
@@ -58,7 +53,7 @@ const styles = StyleSheet.create({
     // borderColor: 'red',
     // borderWidth: 1,
     flex: 1,
-    marginTop: 50
+    marginTop: 35
   },
 })
 

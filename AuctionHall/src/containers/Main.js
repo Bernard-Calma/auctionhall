@@ -12,43 +12,67 @@ import {AddAuction} from "../containers/AddAuction"
 export const Main = (props) => {
     // console.log(props.view)
     // console.log("Props :", props)
-    if (props.view === "main") return(
+    // if (props.view === "main") return(
+    //     <SafeAreaView style = {styles.mainContainer}>
+    //         {/* Search Bar */}
+    //         
+    //         <TopNavBar 
+    //             style = { styles.topNavBar }
+    //             handlePress = {props.handlePress}
+    //             />
+    //         <View style = {styles.photosContainer}>
+    //             {/* List of all auction photos */}
+    //             <Text>{props.view}</Text>
+    //         </View>
+    //         <BottomNavBar
+    //             handlePress = {props.handlePress}
+    //         />
+    //     </SafeAreaView>
+    // )
+    // else if (props.view === "Add Auction") return (
+    //     
+
+    // )
+    return (
         <SafeAreaView style = {styles.mainContainer}>
-            {/* Search Bar */}
             <SearchBar style = {styles.searchBar}/>
             <TopNavBar 
                 style = { styles.topNavBar }
                 handlePress = {props.handlePress}
-                />
-            <View style = {styles.photosContainer}>
-                {/* List of all auction photos */}
-                <Text>{props.view}</Text>
-            </View>
+            />
+            { props.view === "main" ?
+                <View style = {styles.photosContainer}>
+                    {/* List of all auction photos */}
+                    <Text>{props.view}</Text>
+                </View>
+            : props.view === "Add Auction" ?
+                <ScrollView 
+                    contentContainerStyle = {{flex: 1}}
+                    keyboardShouldPersistTaps = 'never'
+                >
+                    <AddAuction 
+                        handlePress = {props.handlePress}
+                    />
+                </ScrollView>
+                :
+                <>
+                
+                </>
+            }
             <BottomNavBar
                 handlePress = {props.handlePress}
-            />
+            />  
         </SafeAreaView>
-    )
-    else if (props.view === "Add Auction") return (
-        <ScrollView 
-            contentContainerStyle = {{flex: 1}}
-            keyboardShouldPersistTaps = 'never'
-        >
-            <AddAuction 
-                handlePress = {props.handlePress}
-            />
-        </ScrollView>
-
     )
 }
 
 const styles = StyleSheet.create({
     mainContainer: {
-        display: "flex",
-        width: '100%',
-        height: '90%',
+        flex: 1,
+        margin: 5,
         justifyContent: 'space-between',
-        marginTop: 60,
+        // borderColor: "blue",
+        // borderWidth: 1,
     },
     searchBar: {
         margin: 5,
