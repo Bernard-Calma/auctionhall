@@ -1,5 +1,6 @@
 import React from "react"
 import { SafeAreaView, View, Text, StyleSheet, } from "react-native"
+import { ScrollView } from "react-native-gesture-handler"
 import { BottomNavBar } from "../components/BottomNavBar"
 
 import { SearchBar } from "../components/SearchBar"
@@ -9,7 +10,7 @@ import { TopNavBar } from "../components/TopNavBar"
 import {AddAuction} from "../containers/AddAuction"
 
 export const Main = (props) => {
-    console.log(props.view)
+    // console.log(props.view)
     // console.log("Props :", props)
     if (props.view === "main") return(
         <SafeAreaView style = {styles.mainContainer}>
@@ -29,11 +30,15 @@ export const Main = (props) => {
         </SafeAreaView>
     )
     else if (props.view === "Add Auction") return (
-        <SafeAreaView>
+        <ScrollView 
+            contentContainerStyle = {{flex: 1}}
+            keyboardShouldPersistTaps = 'never'
+        >
             <AddAuction 
                 handlePress = {props.handlePress}
             />
-        </SafeAreaView>
+        </ScrollView>
+
     )
 }
 

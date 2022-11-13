@@ -12,7 +12,7 @@ const App = () => {
 
   const [view, setView] = useState("main")
   const handlePress = (event) => {
-    console.log("TARGET INST: ", event._targetInst.memoizedProps.title)
+    // console.log("TARGET INST: ", event._targetInst.memoizedProps.title)
     if (!event._targetInst.memoizedProps.title){
       setView("main")
     } else {
