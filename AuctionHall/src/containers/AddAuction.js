@@ -29,14 +29,14 @@ export const AddAuction = (props) => {
             keyboardShould
         >
             <View style = {styles.inner}>
-                <View style={styles.header}>
-                    <Text
-                        onPress={props.handlePress}
-                        style = {styles.backButton}
-                    > 🔙 </Text>
-                    <Text 
-                        style = {styles.title}
-                    >Add Auction</Text>
+                <View style = {styles.photoContainer}>
+                    <View style = {styles.selectPhotoContainer}>
+                        <Text style = {styles.selectPhoto}>Use Camera</Text>
+                    </View>
+                    <View style = {styles.selectPhotoContainer}>
+                        <Text style = {styles.selectPhoto}>Upload Photo</Text>
+                    </View>
+                    <Text style = {styles.addYourPhoto}>(Add your photo)</Text>
                 </View>
                 <View style = {styles.descriptionContainer}>
                     <View style = {styles.titleContainer}>
@@ -73,27 +73,18 @@ export const AddAuction = (props) => {
                         />
                     </View>
 
-                    <View style = {{
-                        marginLeft: "2.5%"
-                    }}>
-                        <Text style = {styles.inputText}>Description</Text>
+                    <View>
+                        <Text style = {styles.descriptionText}>Description</Text>
                             <TextInput 
                                 style = {styles.descriptionInput}
                                 multiline = {true}
                             />
                     </View>
-                    <View style = {styles.photoContainer}>
-                        <View style = {styles.selectPhotoContainer}>
-                            <Text style = {styles.selectPhoto}>Use Camera</Text>
-                        </View>
-                        <View style = {styles.selectPhotoContainer}>
-                            <Text style = {styles.selectPhoto}>Upload Photo</Text>
-                        </View>
-                        <Text style = {styles.addYourPhoto}>(Add your photo)</Text>
+                    <View style = {{marginBottom: 55}}>
+                        <Button 
+                            title = "Post Auction"
+                        />
                     </View>
-                    <Button 
-                        title = "Post Auction"
-                    />
                 </View>
             </View>
         </KeyboardAvoidingView>
@@ -105,10 +96,6 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         marginBottom: 20,
     },
-    backButton: {
-        left: 0,
-        fontSize: 60,
-    },
     descriptionContainer: {
         // borderWidth: 1,
         // borderColor: "blue",
@@ -116,22 +103,13 @@ const styles = StyleSheet.create({
     descriptionInput: {
       borderWidth: 1,
       borderColor: "black",
-      marginRight: 10,
-      height: 120,
-      marginBottom: 40,
-      marginTop: 20,
-      padding: 5,
+      margin: 10,
+      height: 150,
     },
-    header: {
-        height: 70,
-        // borderColor: 'red',
-        // borderWidth: 1,
-        flexDirection: 'row',
-    },
-    inner: {
-        flex: 1,
-        
-    },
+    descriptionText: {
+        fontSize: 20,
+        marginLeft: 15,
+    }, 
     inputText: {
         fontSize: 20,
         margin: 5,
@@ -140,11 +118,6 @@ const styles = StyleSheet.create({
     },
     keyboardAvoidingView: {
         flex: 1,
-    },
-    title: {
-        marginLeft: '10%',
-        marginTop: '4%',
-        fontSize: 30
     },
     // Container for text and input boxes.
     titleContainer: {
@@ -161,8 +134,7 @@ const styles = StyleSheet.create({
     photoContainer: {
         // borderColor: "red",
         // borderWidth: 1,
-        paddingTop: 20,
-        
+        paddingTop: 20, 
     },
     photo: {
 

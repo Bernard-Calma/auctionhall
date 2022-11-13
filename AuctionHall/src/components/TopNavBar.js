@@ -3,7 +3,7 @@ import { View } from "react-native";
 import { NavIcon } from "./NavIcons";
 
 
-export const TopNavBar = () => {
+export const TopNavBar = (props) => {
     const [icons, setIcons] = useState([{
         title: 'filter',
         path: require(`../assets/images/filter.png`),
@@ -42,6 +42,7 @@ export const TopNavBar = () => {
                             key = {index}
                             title = {icon.title}
                             imageFilePath = {icon.path}
+                            handlePress = {props.handlePress}
                         />
                     )
                 })

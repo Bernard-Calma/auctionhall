@@ -5,7 +5,7 @@ import { NavIcon } from "./NavIcons";
 
 export const BottomNavBar = (props) => {
     const [icons, setIcons] = useState([{
-        title: 'home',
+        title: 'main',
         path: require("../assets/images/home.png"),
     },
     {
