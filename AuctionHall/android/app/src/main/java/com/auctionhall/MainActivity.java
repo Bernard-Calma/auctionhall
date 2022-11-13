@@ -1,5 +1,10 @@
 package com.auctionhall;
 
+/*
+ * For react navigation - Inserted Nov 12th, 2002 by Bernard
+ */
+import android.os.Bundle;
+
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;
 import com.facebook.react.ReactRootView;
@@ -23,6 +28,14 @@ public class MainActivity extends ReactActivity {
   @Override
   protected ReactActivityDelegate createReactActivityDelegate() {
     return new MainActivityDelegate(this, getMainComponentName());
+  }
+
+  /*
+   * This is for react navigation - inserted on Nov 12th 2022 by Bernard
+   */
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(null);
   }
 
   public static class MainActivityDelegate extends ReactActivityDelegate {

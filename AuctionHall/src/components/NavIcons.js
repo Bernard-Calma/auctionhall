@@ -3,12 +3,16 @@ import { useState } from "react";
 
 export const NavIcon = (properties ) => {
     
+    
     // console.log(properties.title, "Nav Icon", properties.imageFilePath, "Path")
     return(
         <View style = {{
             width: '20%',
         }}>
-            <Pressable>
+            <Pressable 
+                onPress={properties.handlePress}
+                title = {properties.title}
+                >
                 <Image
                     style = {{
                         height: 40,

@@ -10,6 +10,11 @@ const App = () => {
     signUp: false,
   })
 
+  const [view, setVeiew] = useState("main")
+  const handlePress = (event) => {
+    console.log("TARGET INST: ", event._targetInst.memoizedProps.title)
+}
+
   const handleSignUp = () => {
     setUser({...user, "signUp": !user.signUp})
     console.log(user)
@@ -29,6 +34,8 @@ const App = () => {
       <SafeAreaView style = {styles.safeAreaView}>
         <Main 
           user = {user}
+          view = {view}
+          handlePress = {handlePress}
         />
       </SafeAreaView>
 

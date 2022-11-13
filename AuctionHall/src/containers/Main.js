@@ -5,18 +5,31 @@ import { BottomNavBar } from "../components/BottomNavBar"
 import { SearchBar } from "../components/SearchBar"
 import { TopNavBar } from "../components/TopNavBar"
 
+// Containers
+import AddAuction from "../containers/AddAuction"
+
 export const Main = (props) => {
     // console.log("Props :", props)
-    return(
+    if (props.view === 'main') return(
         <SafeAreaView style = {styles.mainContainer}>
             {/* Search Bar */}
             <SearchBar style = {styles.searchBar}/>
-            <TopNavBar style = { styles.topNavBar }/>
+            <TopNavBar 
+                style = { styles.topNavBar }
+                handlePress = {props.handlePress}
+                />
             <View style = {styles.photosContainer}>
                 {/* List of all auction photos */}
-                <Text>Photos</Text>
+                <Text>{props.view}</Text>
             </View>
-            <BottomNavBar/>
+            <BottomNavBar
+                handlePress = {props.handlePress}
+            />
+        </SafeAreaView>
+    )
+    else if (props.view === "add auction") return (
+        <SafeAreaView>
+            <AddAuction />
         </SafeAreaView>
     )
 }

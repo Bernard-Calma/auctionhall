@@ -1,8 +1,9 @@
+import { useLinkProps } from "@react-navigation/native";
 import { useState } from "react";
 import { View } from "react-native";
 import { NavIcon } from "./NavIcons";
 
-export const BottomNavBar = () => {
+export const BottomNavBar = (props) => {
     const [icons, setIcons] = useState([{
         title: 'home',
         path: require("../assets/images/home.png"),
@@ -41,6 +42,7 @@ export const BottomNavBar = () => {
                             key = {index}
                             title = {icon.title}
                             imageFilePath = {icon.path}
+                            handlePress = {props.handlePress}
                         />
                     )
                 })
