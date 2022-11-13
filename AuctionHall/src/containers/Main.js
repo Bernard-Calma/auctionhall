@@ -6,11 +6,12 @@ import { SearchBar } from "../components/SearchBar"
 import { TopNavBar } from "../components/TopNavBar"
 
 // Containers
-import AddAuction from "../containers/AddAuction"
+import {AddAuction} from "../containers/AddAuction"
 
 export const Main = (props) => {
+    console.log(props.view)
     // console.log("Props :", props)
-    if (props.view === 'main') return(
+    if (props.view === "main") return(
         <SafeAreaView style = {styles.mainContainer}>
             {/* Search Bar */}
             <SearchBar style = {styles.searchBar}/>
@@ -27,9 +28,11 @@ export const Main = (props) => {
             />
         </SafeAreaView>
     )
-    else if (props.view === "add auction") return (
+    else if (props.view === "Add Auction") return (
         <SafeAreaView>
-            <AddAuction />
+            <AddAuction 
+                handlePress = {props.handlePress}
+            />
         </SafeAreaView>
     )
 }

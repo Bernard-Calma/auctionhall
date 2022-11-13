@@ -10,10 +10,15 @@ const App = () => {
     signUp: false,
   })
 
-  const [view, setVeiew] = useState("main")
+  const [view, setView] = useState("main")
   const handlePress = (event) => {
     console.log("TARGET INST: ", event._targetInst.memoizedProps.title)
-}
+    if (!event._targetInst.memoizedProps.title){
+      setView("main")
+    } else {
+      setView(event._targetInst.memoizedProps.title)
+    }
+  }
 
   const handleSignUp = () => {
     setUser({...user, "signUp": !user.signUp})
