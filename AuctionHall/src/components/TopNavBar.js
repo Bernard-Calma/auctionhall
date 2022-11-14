@@ -43,7 +43,7 @@ export const TopNavBar = (props) => {
                             key = {index}
                             title = {icon.title}
                             imageFilePath = {icon.path}
-                            handlePress = {props.handlePress}
+                            handleChangeView = {props.handleChangeView}
                         />
                     )
                 })

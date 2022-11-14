@@ -7,7 +7,7 @@ export const NavIcon = (properties ) => {
     return(
         <View style = {styles.container}>
             <Pressable 
-                onPress={properties.handlePress}
+                onPress={properties.handleChangeView}
                 title = {properties.title}
                 >
                 <Image

@@ -12,6 +12,7 @@ export const Auctions = (props) => {
                         // {console.log("DESCRIPTION: ", auction.description)}
                         return(
                             <AuctionPreview 
+                                key = {index}
                                 auction = {auction}
                             />
                         )
