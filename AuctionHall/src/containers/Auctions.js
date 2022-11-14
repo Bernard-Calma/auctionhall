@@ -1,6 +1,8 @@
 import { useCallback, useEffect, useState } from "react"
 import { View, Text, StyleSheet } from "react-native"
 
+import { AuctionPreview } from "../components/AuctionPreview"
+
 const backendURL = "https://auctionhall-back-end.herokuapp.com/"
 const auctionRoute = "api/v1/auctions/"
 
@@ -31,7 +33,9 @@ export const Auctions = () => {
                     auctions.map((auction, index) => {
                         // {console.log("DESCRIPTION: ", auction.description)}
                         return(
-                            <Text key={index}>{auction.description}</Text>
+                            <AuctionPreview 
+                                auction = {auction}
+                            />
                         )
                     })
                 }</>
@@ -48,7 +52,6 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         margin: 5,
-        borderWidth: 1,
         flexDirection: 'row',
         },
 })
