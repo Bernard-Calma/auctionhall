@@ -2,6 +2,7 @@ import { View, Text, StyleSheet, Image } from "react-native"
 
 
 export const ShowAuction = (props) => {
+    // console.log(props.auction.user.id === props.user.id)
     // console.log(props.auction.auction_date)
     date = new Date(props.auction.auction_date)
     return (
@@ -12,24 +13,35 @@ export const ShowAuction = (props) => {
                 />
             </View>
             <View style={styles.titleContainer}>
-                <View>
-                    <Text style = {styles.title}>{props.auction.title}</Text>
-                    <Text>Host: {props.auction.user.username}</Text>
+                <View style = {styles.titleContainerInisde}>
+                    <Text 
+                        adjustsFontSizeToFit
+                        style = {styles.title}>{props.auction.title}</Text>
+                    <Text 
+                        adjustsFontSizeToFit
+                        style = {styles.descriptionText}>Host: {props.auction.user.username}</Text>
                 </View>
-                <View>
-                    <Text>Starting Price: ${props.auction.price}</Text>
-                    <Text>Increment: ${props.auction.price_increment}</Text>
+                <View style = {styles.titleContainerInisde}>
+                    <Text style = {styles.descriptionText}>Starting Price: ${props.auction.price}</Text>
+                    <Text style = {styles.descriptionText}>Increment: ${props.auction.price_increment}</Text>
                 </View>
             </View>
-            <Text>Description</Text>
             <View style={styles.descriptionContainer}>
-                <Text>{props.auction.description}</Text>
+                <Text style = {styles.descriptionText}>Description:</Text>
+                <Text style = {styles.descriptionTextSmaller}>{props.auction.description}</Text>
             </View>
             <View style={styles.auctionDateContainer}>
-                <Text>Auction Date: {date.toDateString()}</Text>
+                <Text style = {styles.descriptionText}>Auction Date: {date.toDateString()}</Text>
             </View>
             <View style = {styles.addEditContainer}>
-                <Text style = {styles.addEdit}>Join</Text>
+                {
+                    !props.user.id === props.auction.user.id ?
+                        <Text style = {styles.addEdit}>Join</Text>
+                    :
+                    <>
+                    </>
+                }
+                
             </View>
         </View>
     )
@@ -50,7 +62,7 @@ styles = StyleSheet.create({
         fontWeight: "500"
     },
     addEditContainer: {
-        flex: .1,
+        flex: .05,
         justifyContent: "center",
         alignItems: "center"
     },
@@ -58,17 +70,28 @@ styles = StyleSheet.create({
 
     },
     container: {
-        borderWidth: 1,
-        borderColor: 'red',
+        // borderWidth: 1,
+        // borderColor: 'red',
         flex: 1,
     },
     descriptionContainer: {
-        flex: 0.1,
+        flex: 0.3,
         borderWidth: 1,
+        margin: 5,
+    },
+    descriptionText: {
+        // borderWidth: 1,
+        fontSize: 20,
+        margin: 5,
+        fontFamily: "copperplate",
+    },
+    descriptionTextSmaller: {
+        fontFamily: "copperplate", 
+        textAlign: "center"
     },
     imageContainer: {
-        borderWidth: 1,
-        borderColor: 'blue',
+        // borderWidth: 1,
+        // borderColor: 'blue',
         flex: 1,
         // background color until image is implemented
         backgroundColor: "gray"
@@ -77,11 +100,19 @@ styles = StyleSheet.create({
 
     },
     title: {
+        // borderWidth: 1,
+        fontFamily: "copperplate",
         fontSize: 25,
+        margin: 5,
     },
     titleContainer: {
+        // borderWidth: 1,
         flexWrap: "wrap",
         flexDirection: "row",
         justifyContent: "space-between"
     },
+    titleContainerInisde: {
+        flex: 1,
+        // borderWidth: 1,
+    }
 })

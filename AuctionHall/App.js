@@ -5,14 +5,14 @@ import { Main } from "./src/containers/Main"
 
 const App = () => {
   const [user, setUser] = useState({
-    user: undefined,
+    user: {},
     loggedIn: false,
     signUp: false,
   })
 
   const handleSignUp = () => {
     setUser({...user, "signUp": !user.signUp})
-    console.log(user)
+    // console.log(user)
   }
 
   return (

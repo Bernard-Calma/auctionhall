@@ -65,7 +65,8 @@ export const Main = (props) => {
                 keyboardShouldPersistTaps = 'never'
             >
             { view === "main" ?
-                <Auctions 
+                <Auctions
+                    user = {props.user}
                     auctions = {auctions}
                     handleShowAuction = {handleShowAuction}
                 />
@@ -73,6 +74,7 @@ export const Main = (props) => {
                 <AddAuction/> 
             : view === "showAuction" ?
                 <ShowAuction 
+                    user = {props.user.user}
                     auction = { auction }
                 />
             :
