@@ -1,5 +1,6 @@
 import React from "react"
-import { SafeAreaView, View, Text, StyleSheet, } from "react-native"
+import { useState, useCallback, useEffect } from "react"
+import { SafeAreaView, View, Text, StyleSheet } from "react-native"
 import { ScrollView } from "react-native-gesture-handler"
 import { BottomNavBar } from "../components/BottomNavBar"
 
@@ -10,7 +11,30 @@ import { TopNavBar } from "../components/TopNavBar"
 import {AddAuction} from "./AddAuction"
 import { Auctions } from "./Auctions"
 
+// Database
+const backendURL = "https://auctionhall-back-end.herokuapp.com/"
+const auctionRoute = "api/v1/auctions/"
+
+
 export const Main = (props) => {
+    const [auctions, setAuctions] = useState({})
+
+    const getAuctions = useCallback(() => {
+        // console.log(`${backendURL}${auctionRoute}`)
+        fetch(`${backendURL}${auctionRoute}`)
+        .then(response => response.json())
+        .then(data => {
+            setAuctions(data.data)
+        })
+        .catch(err => console.error(err))
+    }, [auctions])
+
+    useEffect(() => {
+        getAuctions()
+    }, [])
+    // console.log("AUCTIONS: ", auctions)
+    // console.log("LENGTH: ", auctions.length)
+
     return (
         <SafeAreaView style = {styles.mainContainer}>
             <SearchBar style = {styles.searchBar}/>
@@ -23,7 +47,7 @@ export const Main = (props) => {
                 keyboardShouldPersistTaps = 'never'
             >
             { props.view === "main" ?
-                <Auctions />
+                <Auctions auctions = {auctions}/>
             : props.view === "Add Auction" ?
                 <AddAuction 
                     handlePress = {props.handlePress}
