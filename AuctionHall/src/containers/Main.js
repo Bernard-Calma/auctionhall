@@ -10,6 +10,7 @@ import { TopNavBar } from "../components/TopNavBar"
 // Containers
 import {AddAuction} from "./AddAuction"
 import { Auctions } from "./Auctions"
+import { ShowAuction } from "./ShowAuction"
 
 // Database
 const backendURL = "https://auctionhall-back-end.herokuapp.com/"
@@ -17,7 +18,8 @@ const auctionRoute = "api/v1/auctions/"
 
 
 export const Main = (props) => {
-    const [auctions, setAuctions] = useState({})
+    const [auctions, setAuctions] = useState([])
+    const [auction, setAuction] = useState({})
     const [view, setView] = useState("main")
 
     const getAuctions = useCallback(() => {
@@ -45,6 +47,12 @@ export const Main = (props) => {
       }
     }
 
+    const handleShowAuction = (auction) => {
+        // console.log("TARGET: ", auction)
+        setAuction(auction)
+        setView("showAuction")
+    }
+
     return (
         <SafeAreaView style = {styles.mainContainer}>
             <SearchBar style = {styles.searchBar}/>
@@ -57,11 +65,16 @@ export const Main = (props) => {
                 keyboardShouldPersistTaps = 'never'
             >
             { view === "main" ?
-                <Auctions auctions = {auctions}/>
+                <Auctions 
+                    auctions = {auctions}
+                    handleShowAuction = {handleShowAuction}
+                />
             : view === "Add Auction" ?
-                <AddAuction
-                    handleChangeView = {handleChangeView}
-                /> 
+                <AddAuction/> 
+            : view === "showAuction" ?
+                <ShowAuction 
+                    auction = { auction }
+                />
             :
             <>
                 <View style = {styles.photosContainer}>
