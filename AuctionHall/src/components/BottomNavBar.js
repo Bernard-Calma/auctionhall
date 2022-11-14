@@ -30,9 +30,10 @@ export const BottomNavBar = (props) => {
     return(
         <View
             style = {{
-                display: 'flex',
                 flexDirection: "row",
-                justifyContent: "space-evenly",
+                justifyContent: "space-between",
+                marginLeft: 20,
+                marginTop: 10,
             }}
         >
             {

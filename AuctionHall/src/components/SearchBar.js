@@ -7,8 +7,7 @@ export const SearchBar = () => {
                 borderWidth: 1,
                 borderRadius: 10,
                 height: '5%',
-                margin: 5,
-                marginBottom: 0,
+                margin: 10,
                 backgroundColor: 'lightgray',
             }}
         />

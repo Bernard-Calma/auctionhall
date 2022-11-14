@@ -41,7 +41,6 @@ export const Auctions = () => {
                 }</>
                 :
                 <>
-                    <Text>No</Text>
                 </>
             }
         </View>
@@ -51,7 +50,10 @@ export const Auctions = () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        margin: 5,
+        flexWrap: "wrap",
+        marginTop: 10,
+        marginBottom: 10,   
         flexDirection: 'row',
+        justifyContent: "space-around"
         },
 })

@@ -1,23 +1,17 @@
-import { Pressable, Image, View } from "react-native";
-import { useState } from "react";
+import { Pressable, Image, View, StyleSheet } from "react-native";
 
 export const NavIcon = (properties ) => {
     
     
     // console.log(properties.title, "Nav Icon", properties.imageFilePath, "Path")
     return(
-        <View style = {{
-            width: '20%',
-        }}>
+        <View style = {styles.container}>
             <Pressable 
                 onPress={properties.handlePress}
                 title = {properties.title}
                 >
                 <Image
-                    style = {{
-                        height: 40,
-                        width: '50%',
-                    }}
+                    style = {styles.icon}
                     source = {properties.imageFilePath}
                 />
             </Pressable>
@@ -25,3 +19,15 @@ export const NavIcon = (properties ) => {
         
     )
 }
+
+const styles = StyleSheet.create({
+    container: {
+        width: '20%',
+    },
+    icon: {
+        height: 40,
+        width: 40,
+        borderWidth: 1,
+        borderRadius: 20,
+    }
+})
