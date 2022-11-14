@@ -18,7 +18,8 @@ const auctionRoute = "api/v1/auctions/"
 
 export const Main = (props) => {
     const [auctions, setAuctions] = useState({})
-
+    const [view, setView] = useState("main")
+    
     const getAuctions = useCallback(() => {
         // console.log(`${backendURL}${auctionRoute}`)
         fetch(`${backendURL}${auctionRoute}`)
@@ -35,22 +36,31 @@ export const Main = (props) => {
     // console.log("AUCTIONS: ", auctions)
     // console.log("LENGTH: ", auctions.length)
 
+    const handlePress = (event) => {
+      // console.log("TARGET INST: ", event._targetInst.memoizedProps.title)
+      if (!event._targetInst.memoizedProps.title){
+        setView("main")
+      } else {
+        setView(event._targetInst.memoizedProps.title)
+      }
+    }
+
     return (
         <SafeAreaView style = {styles.mainContainer}>
             <SearchBar style = {styles.searchBar}/>
             <TopNavBar 
                 style = { styles.topNavBar }
-                handlePress = {props.handlePress}
+                handlePress = {handlePress}
             />
             <ScrollView 
                 contentContainerStyle = {{flexGrow: 1}}
                 keyboardShouldPersistTaps = 'never'
             >
-            { props.view === "main" ?
+            { view === "main" ?
                 <Auctions auctions = {auctions}/>
-            : props.view === "Add Auction" ?
+            : view === "Add Auction" ?
                 <AddAuction 
-                    handlePress = {props.handlePress}
+                    handlePress = {handlePress}
                 /> 
             :
             <>
@@ -62,7 +72,7 @@ export const Main = (props) => {
             }
             </ScrollView>
             <BottomNavBar
-                handlePress = {props.handlePress}
+                handlePress = {handlePress}
             />  
         </SafeAreaView>
     )
