@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, Pressable } from "react-native"
+import { View, Dimensions, StyleSheet, Pressable } from "react-native"
 
 import { AuctionPreview } from "../components/AuctionPreview"
 
@@ -39,13 +39,13 @@ const styles = StyleSheet.create({
         marginTop: 10,
         marginBottom: 10,   
         flexDirection: 'row',
-        justifyContent: "space-around"
         },
     pressableContainer: {
-            margin: 1,
-            width: "24%",
-            height: "20%",
-            // Background Color for now until pictures are added.
-            backgroundColor: "gray",
+        borderWidth: 1,
+        margin: 2,
+        width: Dimensions.get("window").width / 4.2,
+        height: Dimensions.get("window").height / 5.7,
+        // Background Color for now until pictures are added.
+        backgroundColor: "gray",
     }
 })

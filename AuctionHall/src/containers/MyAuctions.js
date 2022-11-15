@@ -1,5 +1,5 @@
-import { Text, View, StyleSheet } from "react-native"
-
+import { StyleSheet, View } from "react-native"
+import { UserAuction } from "../components/UserAuction"
 
 export const MyAuctions = (props) => {
     // console.log("Auctions" ,props.auctions)
@@ -10,7 +10,8 @@ export const MyAuctions = (props) => {
                 <>{
                     props.auctions.map( (auction, index) => {
                         // console.log("Auctions: " ,auction.user.id === props.user.id)
-                        if (auction.user.id === props.user.id) return <Text>{auction.title}</Text>
+                        if (auction.user.id === props.user.id)
+                        return <UserAuction key = {index} auction = {auction} />
                     })
                 }</>
                 :
@@ -24,8 +25,7 @@ export const MyAuctions = (props) => {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        borderWidth: 1,
-        borderColor: 'red',
+        // borderWidth: 1,
+        // borderColor: 'red',
     },
 })
