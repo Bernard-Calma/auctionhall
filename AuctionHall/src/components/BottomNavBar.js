@@ -9,7 +9,7 @@ export const BottomNavBar = (props) => {
         path: require("../assets/images/home.png"),
     },
     {
-        title: 'auctions',
+        title: 'myAuctions',
         path: require("../assets/images/auctions.png"),
     },
     {

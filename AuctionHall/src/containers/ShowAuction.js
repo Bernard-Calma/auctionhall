@@ -81,7 +81,7 @@ styles = StyleSheet.create({
     },
     descriptionText: {
         // borderWidth: 1,
-        fontSize: 20,
+        fontSize: 15,
         margin: 5,
         fontFamily: "copperplate",
     },

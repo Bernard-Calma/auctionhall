@@ -10,6 +10,7 @@ import { TopNavBar } from "../components/TopNavBar"
 // Containers
 import {AddAuction} from "./AddAuction"
 import { Auctions } from "./Auctions"
+import { MyAuctions } from "./MyAuctions"
 import { ShowAuction } from "./ShowAuction"
 
 // Database
@@ -76,6 +77,11 @@ export const Main = (props) => {
                 <ShowAuction 
                     user = {props.user.user}
                     auction = { auction }
+                />
+            : view === "myAuctions" ?
+                <MyAuctions 
+                    user = {props.user.user}
+                    auctions = { auctions }
                 />
             :
             <>
