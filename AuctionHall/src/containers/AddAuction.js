@@ -95,6 +95,7 @@ const styles = StyleSheet.create({
     addYourPhoto: {
         textAlign: 'center',
         marginBottom: 20,
+        fontFamily: "copperplate"
     },
     descriptionContainer: {
         // borderWidth: 1,
@@ -109,12 +110,14 @@ const styles = StyleSheet.create({
     descriptionText: {
         fontSize: 20,
         marginLeft: 15,
+        fontFamily: "copperplate"
     }, 
     inputText: {
         fontSize: 20,
         margin: 5,
         // borderWidth: 1,
         // borderColor: 'green'
+        fontFamily: "copperplate"
     },
     keyboardAvoidingView: {
         flex: 1,
@@ -162,6 +165,7 @@ const styles = StyleSheet.create({
     selectPhoto: {
         fontSize: 20,
         fontWeight: "500",
-        textAlign: "center"
+        textAlign: "center",
+        fontFamily: "copperplate"
     },
 })
