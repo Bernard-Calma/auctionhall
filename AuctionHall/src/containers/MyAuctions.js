@@ -19,7 +19,7 @@ export const MyAuctions = (props) => {
                                 onPress = {() => props.handleShowAuction(auction)}
                             >
                                 <UserAuction 
-                                    
+                                    getAuctions = {props.getAuctions}
                                     auction = {auction} 
                                 />
                             </Pressable>

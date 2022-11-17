@@ -83,6 +83,7 @@ export const Main = (props) => {
                     user = {props.user.user}
                     auctions = { auctions }
                     handleShowAuction = {handleShowAuction}
+                    getAuctions = {getAuctions}
                 />
             :
             <>

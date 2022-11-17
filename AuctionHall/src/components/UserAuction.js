@@ -1,10 +1,47 @@
-import { StyleSheet, Text, View, Dimensions } from "react-native"
+import { useCallback, useState } from "react"
+import { StyleSheet, Text, View, Dimensions, Pressable, Alert  } from "react-native"
 
+
+
+// Database
+const backendURL = "https://auctionhall-back-end.herokuapp.com/"
+const auctionRoute = "api/v1/auctions/"
 
 export const UserAuction = (props) => {
+    const [auction , setAuction] = useState(props.auction)
+    const cancelAlert = () => {
+        Alert.alert("Cancel", "Do you want to cancel this Auction?",
+        [{
+            text: "Cancel",
+            onPress: () => console.log("Cancelled")
+        },
+        {
+            text: "OK", onPress: ()=> cancelAuction()
+        }])
+    }
+
+    const cancelAuction = useCallback(() => {
+        // console.log(auction)
+        // console.log(`${backendURL}${auctionRoute}`)
+        fetch(`${backendURL}${auctionRoute}/${auction.id}`,{
+            method: "DELETE",     
+        })
+        .then(response => response.json())
+        .then(data => {
+            props.getAuctions()
+            
+        })
+        .catch(err => console.error(err))
+    }, [auction])
+
     return(
         <View style = {styles.containter}>
-            <Text style = {styles.cancel}>Cancel</Text>
+            <Pressable
+                onPress={ () => cancelAlert()}
+            >
+                <Text style = {styles.cancel}>Cancel</Text>
+            </Pressable>
+            
         </View>
     )
 }
