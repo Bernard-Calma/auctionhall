@@ -29,6 +29,7 @@ export const UserAuction = (props) => {
         .then(response => response.json())
         .then(data => {
             props.getAuctions()
+            if (data.status.code === 200) Alert.alert("Successfully Deleted.")
             
         })
         .catch(err => console.error(err))
