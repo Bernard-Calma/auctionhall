@@ -80,6 +80,7 @@ export const Main = (props) => {
             : view === "Add Auction" ?
                 <AddAuction
                     user = {props}
+                    setView = {setView}
                 /> 
             : view === "showAuction" ?
                 <ShowAuction 

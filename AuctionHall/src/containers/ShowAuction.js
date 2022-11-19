@@ -41,6 +41,7 @@ export const ShowAuction = (props) => {
                         <Text style = {styles.addEdit}>Join</Text>
                     :
                     <>
+                        
                     </>
                 }
                 

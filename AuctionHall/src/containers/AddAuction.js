@@ -10,7 +10,7 @@ const backendURL = "http://localhost:8000/"
 
 const auctionRoute = "api/v1/auctions/"
 
-export const AddAuction = ({user}) => {
+export const AddAuction = ({user, setview}) => {
     // console.log(user.user.user.id)
     const [body, setbody] = useState({
         user: user.user.user.id,
@@ -25,11 +25,9 @@ export const AddAuction = ({user}) => {
     const [date, setDate] = useState(new Date());
     const [mode, setMode] = useState('date');
     const [show, setShow] = useState(true);
-    const [text, setText] = useState('empty');
-    const [selectedImage, setSelectedImage] = useState()
 
     const onChangeDate = (event, selectedDate) => {
-        const currentDate = selectedDate || date;
+        const currentDate = selectedDate
         setShow(Platform.OS === 'ios');
         let tempDate = new Date(currentDate);
         let fDate = `${tempDate.getDate()} / ${tempDate.getMonth() + 1} / ${tempDate.getFullYear()}`;
@@ -66,6 +64,8 @@ export const AddAuction = ({user}) => {
             headers: {
                 "Content-Type": "application/json"
             },
+        }).then(()=>{
+            // setview("main")
         })
     }
     
