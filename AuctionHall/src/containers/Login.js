@@ -9,11 +9,12 @@ import { Textbox } from "../components/Textbox";
 import { LoginButton } from "../components/buttons/LoginButton";
 import { LoginFooter } from "./LoginFooter";
 import { SignUp } from "./SignUp";
+import { Database } from "../assets/others/links";
 
 // Database
-// const backendURL = "https://auctionhall-back-end.herokuapp.com/"
+const backendURL = Database
 // Database Development
-const backendURL = "http://localhost:8000/"
+// const backendURL = "http://localhost:8000/"
 
 const userRoute = "api/v1/auctions/users"
 export const Login = (props) => {

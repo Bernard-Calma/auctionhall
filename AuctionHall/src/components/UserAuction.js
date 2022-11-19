@@ -1,12 +1,13 @@
 import { useCallback, useState } from "react"
 import { StyleSheet, Text, View, Dimensions, Pressable, Alert, Image  } from "react-native"
+import { Database } from "../assets/others/links"
 
 
 
 // Database
-// const backendURL = "https://auctionhall-back-end.herokuapp.com/"
+const backendURL = Database
 // Database Development
-const backendURL = "http://localhost:8000/"
+// const backendURL = "http://localhost:8000/"
 
 const auctionRoute = "api/v1/auctions/"
 

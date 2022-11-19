@@ -1,7 +1,7 @@
 import { Image, StyleSheet } from "react-native"
 
 export const AuctionPreview = (props) => {
-    console.log(props.auction.photo)
+    // console.log(props.auction.photo)
     return(
         <Image 
             style = {styles.photo}
@@ -12,8 +12,8 @@ export const AuctionPreview = (props) => {
 
 const styles = StyleSheet.create({
     photo: {
-        borderWidth: 1,
-        borderColor: 'yellow',
+        // borderWidth: 1,
+        // borderColor: 'yellow',
         flex: 1,
     }
 })

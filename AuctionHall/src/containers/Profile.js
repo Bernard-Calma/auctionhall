@@ -1,10 +1,34 @@
 import { useState } from "react"
 import { Button, StyleSheet, Text, TextInput, View } from "react-native"
+import { Database } from "../assets/others/links"
 
+// Database
+const backendURL = Database
+const auctionRoute = "api/v1/auctions/users/"
 
 export const Profile = (props) => {
     const [editProfile, setEditProfile] = useState(false)
-    console.log(editProfile)
+    const [username, setusername] = useState("")
+    // console.log(props)
+    // console.log(`${backendURL}${auctionRoute}${props.user.user.id}`)
+
+    const handleSubmitUserUpdate = () => {
+        console.log(username)
+        fetch(`${backendURL}${auctionRoute}${props.user.user.id}`, {
+            method: "POST",
+            credentials: "include",
+            body: JSON.stringify({username: username}),
+            headers: {
+                "Content-Type": "application/json"
+            },
+        }).then(response => response.json())
+        .then(data => {
+                // console.log("User :" , props.user)
+                // console.log("Data: ", {user: data.data})
+                props.setUser({...props.user, user: data.data})}
+            )
+    }
+
     return (
         <View style = {styles.container}>
             <View>
@@ -25,19 +49,14 @@ export const Profile = (props) => {
                         <TextInput
                             style = {styles.TextInput}
                             defaultValue = {props.user.user.username} 
+                            onChangeText = {text => setusername(text)}
                         />
-                    </View>
-                    <View style = {styles.textInputContainer}>
-                        <Text style = {styles.text} >Email Address:: </Text>
-                        <TextInput
-                            style = {styles.TextInput}
-                            defaultValue = {props.user.user.email} 
-                        />
-
-   
                     </View>
                     <Button 
-                        onPress={() => setEditProfile(!editProfile)}
+                        onPress={() => {
+                            setEditProfile(!editProfile)
+                            handleSubmitUserUpdate()
+                        }}
                         title="Submit Change"
                     />
                 </>

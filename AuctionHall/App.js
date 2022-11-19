@@ -26,6 +26,7 @@ const App = () => {
         :
           <Main 
             user = {user}
+            setUser = {setUser}
           />
       }
     </SafeAreaView>

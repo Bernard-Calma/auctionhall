@@ -3,8 +3,8 @@ import { View, Text, StyleSheet, Image } from "react-native"
 
 export const ShowAuction = (props) => {
     // console.log(props.auction.user.id === props.user.id)
-    console.log(props.auction)
-    console.log(props.auction.photo)
+    // console.log(props.auction)
+    // console.log(props.auction.photo)
     date = new Date(props.auction.auction_date)
     return (
         <View style={styles.container}>

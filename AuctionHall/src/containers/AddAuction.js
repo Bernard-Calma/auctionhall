@@ -2,11 +2,12 @@ import { useState } from "react";
 import { Text, View, StyleSheet, TextInput, Button, Platform, KeyboardAvoidingView, Pressable, Image } from "react-native";
 import { launchCamera, launchImageLibrary } from "react-native-image-picker";
 import DateTimePicker from "@react-native-community/datetimepicker";
+import { Database } from "../assets/others/links";
 
 // Database
-// const backendURL = "https://auctionhall-back-end.herokuapp.com/"
+const backendURL = Database
 // Database Development
-const backendURL = "http://localhost:8000/"
+// const backendURL = "http://localhost:8000/"
 
 const auctionRoute = "api/v1/auctions/"
 
@@ -35,7 +36,7 @@ export const AddAuction = ({user, setview}) => {
         // setText(`${fDate} \n ${fTime}`)
         // console.log(`${fDate} \n ${fTime}`)
         setbody({...body, auction_date: tempDate})
-        console.log(body)
+        // console.log(body)
         
     }
     const handleChangeText = (text, name) => {
@@ -47,7 +48,8 @@ export const AddAuction = ({user, setview}) => {
     }
 
     const uploadImageFromLibrary = () => launchImageLibrary({mediaType: 'photo'}, (assets) => {
-        console.log(assets.assets[0].uri)
+        // console.log("Photo: ", assets.assets)
+        // console.log("Type: ", typeof(assets.assets[0].uri))
         setbody({...body, photo: assets.assets[0].uri})
         // setbody({...body, photo: assets})
         // console.log("Body: ", body)
@@ -55,8 +57,8 @@ export const AddAuction = ({user, setview}) => {
     // console.log(selectedImage.assets[0])
 
     const handleAddAuction = () => {
-        console.log("Add Auction")
-        console.log("Body ", body.photo)
+        // console.log("Add Auction")
+        // console.log("Body ", body.photo)
         fetch(`${backendURL}${auctionRoute}`, {
             method: "POST",
             credentials: "include",

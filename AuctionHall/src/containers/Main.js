@@ -13,11 +13,14 @@ import { Auctions } from "./Auctions"
 import { MyAuctions } from "./MyAuctions"
 import { ShowAuction } from "./ShowAuction"
 import { Profile } from "./Profile"
+import { Database } from "../assets/others/links"
+
+
 
 // Database
-// const backendURL = "https://auctionhall-back-end.herokuapp.com/"
+const backendURL = Database
 // Database Development
-const backendURL = "http://localhost:8000/"
+// const backendURL = "http://localhost:8000/"
 
 const auctionRoute = "api/v1/auctions/"
 
@@ -26,7 +29,6 @@ export const Main = (props) => {
     const [auctions, setAuctions] = useState([])
     const [auction, setAuction] = useState({})
     const [view, setView] = useState("main")
-
     const getAuctions = useCallback(() => {
         // console.log(`${backendURL}${auctionRoute}`)
         fetch(`${backendURL}${auctionRoute}`)
@@ -34,7 +36,7 @@ export const Main = (props) => {
             return response.json()
         })
         .then(data => {
-            console.log("DATA: " , data)
+            // console.log("DATA: " , data)
             setAuctions(data.data)
         })
         .catch(err => console.error("ERROR: ", err))
@@ -96,6 +98,7 @@ export const Main = (props) => {
                 />
             : view === "profile" ?
                 <Profile 
+                    setUser = {props.setUser}
                     user = {props.user}
                 />
             :
