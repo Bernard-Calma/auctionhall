@@ -1,6 +1,7 @@
 import { useEffect } from "react"
 import { View, Text, StyleSheet, Image } from "react-native"
 import { Database } from "../assets/others/links"
+import { ImagePreview } from "../components/ImagePreview"
 
 // Database
 const backendURL = Database
@@ -37,9 +38,9 @@ export const ShowAuction = (props) => {
     return (
         <View style={styles.container}>
             <View style={styles.imageContainer}>
-                <Image
-                    style={styles.image}
-                    source={{uri: props.auction.photo}}
+                < ImagePreview 
+                    style = {styles.image}
+                    uri={props.auction.photo}
                 />
             </View>
             <View style={styles.titleContainer}>

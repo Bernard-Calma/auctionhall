@@ -31,11 +31,7 @@ export const AddAuction = ({user, setview}) => {
         const currentDate = selectedDate
         setShow(Platform.OS === 'ios');
         let tempDate = new Date(currentDate);
-        let fDate = `${tempDate.getDate()} / ${tempDate.getMonth() + 1} / ${tempDate.getFullYear()}`;
-        // let fTime = `Hours: ${tempDate.getHours()} | Minutes: ${tempDate.getMinutes()}`;
-        // setText(`${fDate} \n ${fTime}`)
-        // console.log(`${fDate} \n ${fTime}`)
-        setbody({...body, auction_date: tempDate})
+         setbody({...body, auction_date: tempDate})
         // console.log(body)
         
     }
