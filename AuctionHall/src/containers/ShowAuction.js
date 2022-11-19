@@ -1,3 +1,4 @@
+import { useEffect } from "react"
 import { View, Text, StyleSheet, Image } from "react-native"
 import { Database } from "../assets/others/links"
 
@@ -11,12 +12,11 @@ export const ShowAuction = (props) => {
     // console.log("USER ID: ", props.user.id)
     // console.log(props.auction.photo)
     // console.log(props.auction.participants.includes(props.user.id))
-
     const handleJoin = () => {
-        console.log("Join")
-        
+        // console.log("Join")
+        console.log(`${props.auction.title} is updated`)
         updatedParticipants = [...props.auction.participants, props.user.id]
-        console.log(updatedParticipants)
+        // console.log(updatedParticipants)
         fetch(`${backendURL}${auctionRoute}${props.auction.id}`, {
             method: "PUT",
             credentials: "include",
@@ -24,10 +24,15 @@ export const ShowAuction = (props) => {
             headers: {
                 "Content-Type": "application/json"
             },
+        }).then(response => response.json())
+        .then(data => {
+            // console.log("Updated Data" , data.data)
+            // console.log("PROPS : ", props.auction)
+            props.reloadAuction(data.data)
         })
     }
 
-    // console.log(props.auction)
+    // console.log(`${props.auction.title} : ${props.auction.participants.length}`)
     date = new Date(props.auction.auction_date)
     return (
         <View style={styles.container}>

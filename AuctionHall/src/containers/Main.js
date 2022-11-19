@@ -27,6 +27,7 @@ export const Main = (props) => {
     const [auction, setAuction] = useState({})
     const [view, setView] = useState("main")
     const getAuctions = useCallback(() => {
+        console.log("getAuctions called")
         // console.log(`${backendURL}${auctionRoute}`)
         fetch(`${backendURL}${auctionRoute}`)
         .then(response => {
@@ -59,6 +60,12 @@ export const Main = (props) => {
         setView("showAuction")
     }
 
+    const reloadAuction = (newAuction) => {
+        console.log("reloadAuctions called")
+        setAuction(newAuction)
+        console.log("AUCTION: ", auction)
+    }
+
     return (
         <SafeAreaView style = {styles.mainContainer}>
             <SearchBar style = {styles.searchBar}/>
@@ -84,8 +91,10 @@ export const Main = (props) => {
                 /> 
             : view === "showAuction" ?
                 <ShowAuction 
+                    reloadAuction = {reloadAuction}
                     user = {props.user.user}
                     auction = { auction }
+                    setView = {setView}
                 />
             : view === "myAuctions" ?
                 <MyAuctions 
@@ -109,6 +118,7 @@ export const Main = (props) => {
             }
             </ScrollView>
             <BottomNavBar
+                reloadAuction = {reloadAuction}
                 handleChangeView = {handleChangeView}
             />  
         </SafeAreaView>

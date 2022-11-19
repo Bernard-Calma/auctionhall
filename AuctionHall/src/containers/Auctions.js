@@ -4,7 +4,9 @@ import { View, Dimensions, StyleSheet, Pressable } from "react-native"
 import { AuctionPreview } from "../components/AuctionPreview"
 
 export const Auctions = (props) => {
-    // props.useEffect()
+    useEffect(()=>{
+        props.reloadAuctions
+    })
     return(
         <View style = {styles.container}>
             {
