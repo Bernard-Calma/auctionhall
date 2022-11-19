@@ -15,7 +15,10 @@ import { ShowAuction } from "./ShowAuction"
 import { Profile } from "./Profile"
 
 // Database
-const backendURL = "https://auctionhall-back-end.herokuapp.com/"
+// const backendURL = "https://auctionhall-back-end.herokuapp.com/"
+// Database Development
+const backendURL = "http://localhost:8000/"
+
 const auctionRoute = "api/v1/auctions/"
 
 
@@ -73,7 +76,9 @@ export const Main = (props) => {
                     handleShowAuction = {handleShowAuction}
                 />
             : view === "Add Auction" ?
-                <AddAuction/> 
+                <AddAuction
+                    user = {props}
+                /> 
             : view === "showAuction" ?
                 <ShowAuction 
                     user = {props.user.user}

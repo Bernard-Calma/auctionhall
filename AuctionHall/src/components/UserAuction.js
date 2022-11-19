@@ -4,7 +4,10 @@ import { StyleSheet, Text, View, Dimensions, Pressable, Alert  } from "react-nat
 
 
 // Database
-const backendURL = "https://auctionhall-back-end.herokuapp.com/"
+// const backendURL = "https://auctionhall-back-end.herokuapp.com/"
+// Database Development
+const backendURL = "http://localhost:8000/"
+
 const auctionRoute = "api/v1/auctions/"
 
 export const UserAuction = (props) => {

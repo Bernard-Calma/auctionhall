@@ -8,7 +8,11 @@ import {
 import { Textbox } from "../components/Textbox";
 import { LoginButton } from "../components/buttons/LoginButton";
 
-const backendURL = "http://localhost:8000"
+// Database
+// const backendURL = "https://auctionhall-back-end.herokuapp.com/"
+// Database Development
+const backendURL = "http://localhost:8000/"
+
 const userRoute = "/api/v1/auctions/users"
 export const SignUp = () => {
     const [user, setUser] = useState({

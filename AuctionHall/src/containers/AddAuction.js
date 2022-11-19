@@ -1,25 +1,68 @@
 import { useState } from "react";
-import { SafeAreaView, Text, View, StyleSheet, TextInput, Button, Platform, KeyboardAvoidingView, TouchableWithoutFeedback, Keyboard } from "react-native";
+import { Text, View, StyleSheet, TextInput, Button, Platform, KeyboardAvoidingView, Pressable } from "react-native";
 import { launchCamera, launchImageLibrary } from "react-native-image-picker";
 import DateTimePicker from "@react-native-community/datetimepicker";
 
-export const AddAuction = (props) => {
+// Database
+// const backendURL = "https://auctionhall-back-end.herokuapp.com/"
+// Database Development
+const backendURL = "http://localhost:8000/"
+
+const auctionRoute = "api/v1/auctions/"
+
+export const AddAuction = ({user}) => {
+    // console.log(user.user.user.id)
+    const [body, setbody] = useState({
+        user: user.user.user.id,
+        auction_date: new Date(),
+        title: "test",
+        description: "",
+        price: 0,
+        price_increment: 0,
+        photo: "",
+
+    })
     const [date, setDate] = useState(new Date());
     const [mode, setMode] = useState('date');
     const [show, setShow] = useState(true);
     const [text, setText] = useState('empty');
+    const [selectedImage, setSelectedImage] = useState()
 
-    const onChange = (event, selectedDate) => {
+    const onChangeDate = (event, selectedDate) => {
         const currentDate = selectedDate || date;
         setShow(Platform.OS === 'ios');
-        setDate(currentDate)
-
         let tempDate = new Date(currentDate);
         let fDate = `${tempDate.getDate()} / ${tempDate.getMonth() + 1} / ${tempDate.getFullYear()}`;
         // let fTime = `Hours: ${tempDate.getHours()} | Minutes: ${tempDate.getMinutes()}`;
         // setText(`${fDate} \n ${fTime}`)
         // console.log(`${fDate} \n ${fTime}`)
-        console.log(fDate)
+        setbody({...body, auction_date: tempDate})
+        console.log(body)
+    }
+    const handleChangeText = (text, name) => {
+        setbody({...body, [name]: text})
+        // console.log("Body:  ", body)
+        // console.log("TEXT:  ", text)
+        // console.log("NAME:  ", name)
+    }
+
+    const uploadImageFromLibrary = () => launchImageLibrary({mediaType: 'photo'}, (assets) => {
+        setbody({...body, photo: assets})
+        // console.log("Body: ", body)
+    })
+    // console.log(selectedImage.assets[0])
+
+    const handleAddAuction = () => {
+        console.log("Add Auction")
+        console.log("Body ", body)
+        fetch(`${backendURL}${auctionRoute}`, {
+            method: "POST",
+            credentials: "include",
+            body: JSON.stringify(body),
+            headers: {
+                "Content-Type": "application/json"
+            },
+        })
     }
 
     return(
@@ -34,7 +77,12 @@ export const AddAuction = (props) => {
                         <Text style = {styles.selectPhoto}>Use Camera</Text>
                     </View>
                     <View style = {styles.selectPhotoContainer}>
-                        <Text style = {styles.selectPhoto}>Upload Photo</Text>
+                        <Pressable
+                            onPress={()=>uploadImageFromLibrary()}
+                        >
+                            <Text style = {styles.selectPhoto}>Upload Photo</Text>
+                        </Pressable>
+                        
                     </View>
                     <Text style = {styles.addYourPhoto}>(Add your photo)</Text>
                 </View>
@@ -42,12 +90,14 @@ export const AddAuction = (props) => {
                     <View style = {styles.titleContainer}>
                         <Text style = {styles.inputText}>Title</Text>
                         <TextInput
+                            onChangeText = {(text) => handleChangeText(text, "title")}
                             style = {styles.titleInput}
                         />
                     </View>
                     <View style = {styles.titleContainer}>
                         <Text style = {styles.inputText}>Starting Price</Text>
                         <TextInput
+                            onChangeText = {(text) => handleChangeText(text, "price")}
                             keyboardType="number-pad"
                             style = {styles.priceInput}
                         />
@@ -56,6 +106,7 @@ export const AddAuction = (props) => {
                     <View style = {styles.titleContainer}>
                         <Text style = {styles.inputText}>Price Increment</Text>
                         <TextInput
+                            onChangeText = {(text) => handleChangeText(text, "price_increment")}
                             keyboardType="number-pad"
                             style = {styles.priceIncrementInput}
                         />
@@ -69,19 +120,21 @@ export const AddAuction = (props) => {
                             mode={mode}
                             is24Hour={true}
                             display='default'
-                            onChange={onChange}
+                            onChange={onChangeDate}
                         />
                     </View>
 
                     <View>
                         <Text style = {styles.descriptionText}>Description</Text>
                             <TextInput 
+                                onChangeText = {(text) => handleChangeText(text, "description")}
                                 style = {styles.descriptionInput}
                                 multiline = {true}
                             />
                     </View>
                     <View style = {{marginBottom: 55}}>
                         <Button 
+                            onPress = {handleAddAuction}
                             title = "Post Auction"
                         />
                     </View>

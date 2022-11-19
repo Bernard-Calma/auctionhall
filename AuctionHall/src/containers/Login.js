@@ -10,7 +10,11 @@ import { LoginButton } from "../components/buttons/LoginButton";
 import { LoginFooter } from "./LoginFooter";
 import { SignUp } from "./SignUp";
 
-const backendURL = "https://auctionhall-back-end.herokuapp.com/"
+// Database
+// const backendURL = "https://auctionhall-back-end.herokuapp.com/"
+// Database Development
+const backendURL = "http://localhost:8000/"
+
 const userRoute = "api/v1/auctions/users"
 export const Login = (props) => {
     const [user, setUser] = useState({
