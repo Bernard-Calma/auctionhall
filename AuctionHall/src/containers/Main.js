@@ -19,9 +19,6 @@ import { Database } from "../assets/others/links"
 
 // Database
 const backendURL = Database
-// Database Development
-// const backendURL = "http://localhost:8000/"
-
 const auctionRoute = "api/v1/auctions/"
 
 
@@ -78,6 +75,7 @@ export const Main = (props) => {
                     user = {props.user}
                     auctions = {auctions}
                     handleShowAuction = {handleShowAuction}
+                    getAuctions = {getAuctions}
                 />
             : view === "Add Auction" ?
                 <AddAuction

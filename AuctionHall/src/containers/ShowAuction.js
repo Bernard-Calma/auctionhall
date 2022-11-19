@@ -1,10 +1,33 @@
 import { View, Text, StyleSheet, Image } from "react-native"
+import { Database } from "../assets/others/links"
 
+// Database
+const backendURL = Database
+const auctionRoute = "api/v1/auctions/"
 
 export const ShowAuction = (props) => {
     // console.log(props.auction.user.id === props.user.id)
-    // console.log(props.auction)
+    // console.log("AUCTION : " , props.auction.user.id)
+    // console.log("USER ID: ", props.user.id)
     // console.log(props.auction.photo)
+    // console.log(props.auction.participants.includes(props.user.id))
+
+    const handleJoin = () => {
+        console.log("Join")
+        
+        updatedParticipants = [...props.auction.participants, props.user.id]
+        console.log(updatedParticipants)
+        fetch(`${backendURL}${auctionRoute}${props.auction.id}`, {
+            method: "PUT",
+            credentials: "include",
+            body: JSON.stringify({participants: updatedParticipants}),
+            headers: {
+                "Content-Type": "application/json"
+            },
+        })
+    }
+
+    // console.log(props.auction)
     date = new Date(props.auction.auction_date)
     return (
         <View style={styles.container}>
@@ -34,14 +57,28 @@ export const ShowAuction = (props) => {
             </View>
             <View style={styles.auctionDateContainer}>
                 <Text style = {styles.descriptionText}>Auction Date: {date.toDateString()}</Text>
+                <Text style = {styles.descriptionText}>Participants: {props.auction.participants.length}</Text>
             </View>
             <View style = {styles.addEditContainer}>
                 {
-                    !props.user.id === props.auction.user.id ?
-                        <Text style = {styles.addEdit}>Join</Text>
+                    !(props.user.id === props.auction.user.id) ?
+                    <>
+                        {
+                            props.auction.participants.includes(props.user.id)?
+                            <>
+                            </>
+                            :
+                            <>
+                                <Text 
+                                    style = {styles.addEdit}
+                                    onPress = {handleJoin}
+                                >Join</Text>
+                            </>
+                        }
+                    </>  
                     :
                     <>
-                        
+                        <Text style = {styles.addEdit}>Edit</Text>
                     </>
                 }
                 
@@ -70,7 +107,8 @@ styles = StyleSheet.create({
         alignItems: "center"
     },
     auctionDateContainer: {
-
+        flexDirection: 'row',
+        justifyContent: "space-between"
     },
     container: {
         // borderWidth: 1,
