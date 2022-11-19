@@ -30,13 +30,15 @@ export const Main = (props) => {
     const getAuctions = useCallback(() => {
         // console.log(`${backendURL}${auctionRoute}`)
         fetch(`${backendURL}${auctionRoute}`)
-        .then(response => response.json())
+        .then(response => {
+            return response.json()
+        })
         .then(data => {
+            console.log("DATA: " , data)
             setAuctions(data.data)
         })
-        .catch(err => console.error(err))
+        .catch(err => console.error("ERROR: ", err))
     }, [auctions])
-
     useEffect(() => {
         getAuctions()
     }, [])
@@ -73,7 +75,7 @@ export const Main = (props) => {
                 <Auctions
                     user = {props.user}
                     auctions = {auctions}
-                    handleShowAuction = {handleShowAuction}
+                    useEffect = {useEffect}
                 />
             : view === "Add Auction" ?
                 <AddAuction

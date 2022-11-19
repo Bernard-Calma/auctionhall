@@ -1,8 +1,10 @@
+import { useEffect } from "react"
 import { View, Dimensions, StyleSheet, Pressable } from "react-native"
 
 import { AuctionPreview } from "../components/AuctionPreview"
 
 export const Auctions = (props) => {
+    // props.useEffect()
     return(
         <View style = {styles.container}>
             {

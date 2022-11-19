@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Text, View, StyleSheet, TextInput, Button, Platform, KeyboardAvoidingView, Pressable } from "react-native";
+import { Text, View, StyleSheet, TextInput, Button, Platform, KeyboardAvoidingView, Pressable, Image } from "react-native";
 import { launchCamera, launchImageLibrary } from "react-native-image-picker";
 import DateTimePicker from "@react-native-community/datetimepicker";
 
@@ -38,23 +38,27 @@ export const AddAuction = ({user}) => {
         // console.log(`${fDate} \n ${fTime}`)
         setbody({...body, auction_date: tempDate})
         console.log(body)
+        
     }
     const handleChangeText = (text, name) => {
         setbody({...body, [name]: text})
         // console.log("Body:  ", body)
         // console.log("TEXT:  ", text)
         // console.log("NAME:  ", name)
+        // console.log("PHOTO: ", body.photo)
     }
 
     const uploadImageFromLibrary = () => launchImageLibrary({mediaType: 'photo'}, (assets) => {
-        setbody({...body, photo: assets})
+        console.log(assets.assets[0].uri)
+        setbody({...body, photo: assets.assets[0].uri})
+        // setbody({...body, photo: assets})
         // console.log("Body: ", body)
     })
     // console.log(selectedImage.assets[0])
 
     const handleAddAuction = () => {
         console.log("Add Auction")
-        console.log("Body ", body)
+        console.log("Body ", body.photo)
         fetch(`${backendURL}${auctionRoute}`, {
             method: "POST",
             credentials: "include",
@@ -64,28 +68,37 @@ export const AddAuction = ({user}) => {
             },
         })
     }
-
+    
     return(
         <KeyboardAvoidingView
             behavior = { Platform.OS === "ios" ? "padding" : "height"}
             style = {styles.keyboardAvoidingView}
             keyboardShould
         >
-            <View style = {styles.inner}>
-                <View style = {styles.photoContainer}>
-                    <View style = {styles.selectPhotoContainer}>
-                        <Text style = {styles.selectPhoto}>Use Camera</Text>
-                    </View>
-                    <View style = {styles.selectPhotoContainer}>
-                        <Pressable
-                            onPress={()=>uploadImageFromLibrary()}
-                        >
-                            <Text style = {styles.selectPhoto}>Upload Photo</Text>
-                        </Pressable>
-                        
-                    </View>
-                    <Text style = {styles.addYourPhoto}>(Add your photo)</Text>
-                </View>
+            <View style = {styles.inner}>  
+                { body.photo === ""
+                    ?
+                    <View style = {styles.photoContainer}>
+                        <View style = {styles.selectPhotoContainer}>
+                            <Text style = {styles.selectPhoto}>Use Camera</Text>
+                        </View>
+                        <View style = {styles.selectPhotoContainer}>
+                            <Pressable
+                                onPress={()=>uploadImageFromLibrary()}
+                            >
+                                <Text style = {styles.selectPhoto}>Upload Photo</Text>
+                            </Pressable>
+                        </View>
+                        <Text style = {styles.addYourPhoto}>(Add your photo)</Text>
+                        </View>
+                    :
+                    <>  
+                        <Image
+                            style = {styles.photo} 
+                            source={{uri: body.photo}}
+                        />
+                    </>
+                }
                 <View style = {styles.descriptionContainer}>
                     <View style = {styles.titleContainer}>
                         <Text style = {styles.inputText}>Title</Text>
@@ -132,7 +145,7 @@ export const AddAuction = ({user}) => {
                                 multiline = {true}
                             />
                     </View>
-                    <View style = {{marginBottom: 55}}>
+                    <View style = {{marginBottom: 100}}>
                         <Button 
                             onPress = {handleAddAuction}
                             title = "Post Auction"
@@ -193,7 +206,11 @@ const styles = StyleSheet.create({
         paddingTop: 20, 
     },
     photo: {
-
+        // borderWidth: 1,
+        // borderColor: 'red',
+        width: 100,
+        height: 100,
+        alignSelf: "center"
     },
     priceInput: {
         borderWidth: 1,
