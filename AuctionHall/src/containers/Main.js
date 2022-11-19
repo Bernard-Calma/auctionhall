@@ -75,7 +75,7 @@ export const Main = (props) => {
                 <Auctions
                     user = {props.user}
                     auctions = {auctions}
-                    useEffect = {useEffect}
+                    handleShowAuction = {handleShowAuction}
                 />
             : view === "Add Auction" ?
                 <AddAuction

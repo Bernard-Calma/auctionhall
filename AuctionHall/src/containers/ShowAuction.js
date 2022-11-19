@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, Image } from "react-native"
 
 export const ShowAuction = (props) => {
     // console.log(props.auction.user.id === props.user.id)
-    // console.log(props.auction.auction_date)
+    console.log(props.auction)
     console.log(props.auction.photo)
     date = new Date(props.auction.auction_date)
     return (
@@ -11,7 +11,7 @@ export const ShowAuction = (props) => {
             <View style={styles.imageContainer}>
                 <Image
                     style={styles.image}
-
+                    source={{uri: props.auction.photo}}
                 />
             </View>
             <View style={styles.titleContainer}>
@@ -99,7 +99,7 @@ styles = StyleSheet.create({
         backgroundColor: "gray"
     },
     image: {
-
+        flex: 1,
     },
     title: {
         // borderWidth: 1,
