@@ -1,5 +1,5 @@
 import { useCallback, useState } from "react"
-import { StyleSheet, Text, View, Dimensions, Pressable, Alert  } from "react-native"
+import { StyleSheet, Text, View, Dimensions, Pressable, Alert, Image  } from "react-native"
 
 
 
@@ -40,22 +40,32 @@ export const UserAuction = (props) => {
 
     return(
         <View style = {styles.containter}>
-            <Pressable
-                onPress={ () => cancelAlert()}
-            >
-                <Text style = {styles.cancel}>Cancel</Text>
-            </Pressable>
+            <Image
+                style = {styles.photo}
+                source={{uri: props.auction.photo}}
+            />
+            <View style = {styles.titleContainer}>
+                <Text
+                    style = {styles.font}
+                >{props.auction.title}</Text>
+                <Pressable
+                    onPress={ () => cancelAlert()}
+                >
+                    <Text style = {styles.font}>Cancel</Text>
+                </Pressable>
+            </View>
+            
             
         </View>
     )
 }
 
 const styles = StyleSheet.create({
-    cancel:{
+    font:{
         fontFamily: "copperplate",
         fontWeight: "500",
         fontSize: 20,
-        margin: 5
+        margin: 5,
     },
     containter: {
         // borderWidth: 1,
@@ -64,7 +74,13 @@ const styles = StyleSheet.create({
         backgroundColor: "gray",
         marginBottom: 5,
         height: Dimensions.get('window').height / 4.22,
-        flexDirection: "row",
         justifyContent: "flex-end"
     },
+    photo: {
+        flex: 1,
+    },
+    titleContainer: {
+        flexDirection: "row",
+        justifyContent: 'space-between'
+    }
 })
