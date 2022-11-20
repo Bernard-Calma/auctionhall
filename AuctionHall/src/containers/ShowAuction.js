@@ -6,7 +6,6 @@ import { ImagePreview } from "../components/ImagePreview"
 // Database
 const backendURL = Database
 const auctionRoute = "api/v1/auctions/"
-
 export const ShowAuction = (props) => {
     // console.log(props.auction.user.id === props.user.id)
     // console.log("AUCTION : " , props.auction.user.id)
@@ -32,7 +31,6 @@ export const ShowAuction = (props) => {
             props.reloadAuction(data.data)
         })
     }
-
     // console.log(`${props.auction.title} : ${props.auction.participants.length}`)
     date = new Date(props.auction.auction_date)
     return (

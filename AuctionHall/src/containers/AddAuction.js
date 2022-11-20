@@ -43,6 +43,18 @@ export const AddAuction = ({user, setview}) => {
         // console.log("PHOTO: ", body.photo)
     }
 
+    const uploadFromCamera = () => {
+        launchCamera(
+            {
+                mediaType: 'photo',
+                cameraType: "front"
+        
+            }, (asset) => {
+            setbody({...body, photo: asset.uri})
+        })
+
+    }
+
     const uploadImageFromLibrary = () => launchImageLibrary({mediaType: 'photo'}, (assets) => {
         // console.log("Photo: ", assets.assets)
         // console.log("Type: ", typeof(assets.assets[0].uri))
@@ -78,7 +90,12 @@ export const AddAuction = ({user, setview}) => {
                     ?
                     <View style = {styles.photoContainer}>
                         <View style = {styles.selectPhotoContainer}>
-                            <Text style = {styles.selectPhoto}>Use Camera</Text>
+                            <Pressable
+                                onPress = {() => uploadFromCamera()}
+                            >   
+                                <Text style = {styles.selectPhoto}>Use Camera</Text>    
+                            </Pressable>
+                            
                         </View>
                         <View style = {styles.selectPhotoContainer}>
                             <Pressable

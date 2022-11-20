@@ -5,5 +5,4 @@ export const ImagePreview = (props) => {
                 style={props.style}
                 source={{uri: props.uri}}         
             />
-
 }

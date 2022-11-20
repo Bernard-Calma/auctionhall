@@ -14,13 +14,11 @@ import { MyAuctions } from "./MyAuctions"
 import { ShowAuction } from "./ShowAuction"
 import { Profile } from "./Profile"
 import { Database } from "../assets/others/links"
-
-
+import { AuctionStart } from "./AuctionStart"
 
 // Database
 const backendURL = Database
 const auctionRoute = "api/v1/auctions/"
-
 
 export const Main = (props) => {
     const [auctions, setAuctions] = useState([])
@@ -63,8 +61,11 @@ export const Main = (props) => {
     const reloadAuction = (newAuction) => {
         console.log("reloadAuctions called")
         setAuction(newAuction)
-        console.log("AUCTION: ", auction)
     }
+
+    // console.log("Auction DATE: ", new Date(auction.auction_date).getDay())
+    // console.log("DATE TODAY: ", new Date().getDay())
+    // console.log("AUCTION: ", new Date(auction.auction_date).getDay()=== new Date().getDay())
 
     return (
         <SafeAreaView style = {styles.mainContainer}>
@@ -90,12 +91,16 @@ export const Main = (props) => {
                     setView = {setView}
                 /> 
             : view === "showAuction" ?
+            new Date(auction.auction_date).getDay() === new Date().getDay()?
+                    <AuctionStart />
+                :
                 <ShowAuction 
                     reloadAuction = {reloadAuction}
                     user = {props.user.user}
                     auction = { auction }
                     setView = {setView}
                 />
+
             : view === "myAuctions" ?
                 <MyAuctions 
                     user = {props.user.user}
