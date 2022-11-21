@@ -23,7 +23,7 @@ export const AuctionStart = (props) => {
  
 
 
-
+    console.log(auctionLogs)
 
     const startAuctionButton = () => {
         Alert.alert(
@@ -37,7 +37,7 @@ export const AuctionStart = (props) => {
                     text: "Ok",
                     onPress: () => {
                         setAuctionCountdownStart(true)
-                        setAuctionLogs([auctionLogs, "Auction Started"])
+                        setAuctionLogs([...auctionLogs, "Auction Started"])
                     }
                     
                 }
@@ -84,7 +84,7 @@ export const AuctionStart = (props) => {
             </View>
             {/* Change this to be auction logs */}
             <View style={styles.descriptionContainer}>
-                <Text style = {styles.descriptionTextSmaller}>{props.auction.description}</Text>
+                <Text style = {styles.descriptionTextSmaller}>{auctionLogs}</Text>
             </View>
              {/* Change this to be auction logs */}
             <View style = {styles.addEditContainer}>
