@@ -5,7 +5,27 @@ import {ImagePreview} from "../components/ImagePreview"
 
 export const AuctionStart = (props) => {
     const [auctionStart, setAuctionStart] = useState(false)
-    const startAuction = () => {
+    // for dev purpose set timer to 5 seconds
+    const [auctionCountdownStart, setAuctionCountdownStart] = useState(false)
+    let [auctionCountdown, setAuctionCountdown] = useState(5)
+
+    // Logs
+    const [auctionLogs , setAuctionLogs] = useState([])
+
+    const countdown = setTimeout(() => {
+        if (auctionCountdownStart && auctionCountdown > 0) setAuctionCountdown(auctionCountdown-=1)
+        else if (auctionCountdown === 0) {
+            clearTimeout(countdown)
+            setAuctionStart(true)
+            setAuctionCountdownStart(false)
+        }
+    },1000)
+ 
+
+
+
+
+    const startAuctionButton = () => {
         Alert.alert(
             "Start Auction",
             "Start Auction Now?",
@@ -15,11 +35,16 @@ export const AuctionStart = (props) => {
                 },
                 {
                     text: "Ok",
-                    onPress: setAuctionStart(true)
+                    onPress: () => {
+                        setAuctionCountdownStart(true)
+                        setAuctionLogs([auctionLogs, "Auction Started"])
+                    }
+                    
                 }
             ]
             )
         }
+
     return (
         <View style={styles.container}>
             <View style={styles.imageContainer}>
@@ -45,10 +70,14 @@ export const AuctionStart = (props) => {
             </View>
             
             <View style={styles.auctionDateContainer}>
-                <Text style = {styles.descriptionText}>Auction starts in: </Text>
+                <View style = {styles.auctionCountdownContainer}>
+                    <Text style = {styles.auctionCountdown}>Auction starts in: </Text>
+                    <Text style = {styles.auctionCountdown}>00:0{auctionCountdown}</Text>
+                </View>  
                 <View style = {styles.countdown}>
-                    <Text>Countdown: </Text>
+                    <Text style = {styles.auctionCountdown}>Countdown: </Text>
                     <Countdown 
+                        style = {styles.auctionCountdown}
                         auctionStart = {auctionStart}
                     />
                 </View> 
@@ -69,7 +98,7 @@ export const AuctionStart = (props) => {
                         <Button 
                             style = {styles.start} 
                             title = "Start Auction"
-                            onPress={()=>startAuction()}
+                            onPress={()=>startAuctionButton()}
                             />
                     </>
                 }
@@ -102,6 +131,16 @@ styles = StyleSheet.create({
     auctionDateContainer: {
         flexDirection: 'row',
         justifyContent: "space-between"
+    },
+    auctionCountdown:{
+        fontFamily: "copperplate",
+        fontSize: 20,
+        margin: 2,
+    },
+    auctionCountdownContainer: {
+        // borderWidth: 1,
+        borderColor: 1,
+        flexDirection: "row"
     },
     container: {
         // borderWidth: 1,
