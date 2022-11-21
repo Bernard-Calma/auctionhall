@@ -70,10 +70,10 @@ export const Main = (props) => {
     return (
         <SafeAreaView style = {styles.mainContainer}>
             <SearchBar style = {styles.searchBar}/>
-            <TopNavBar 
+            {/* <TopNavBar 
                 style = { styles.topNavBar }
                 handleChangeView = {handleChangeView}
-            />
+            /> */}
             <ScrollView 
                 contentContainerStyle = {{flexGrow: 1}}
                 keyboardShouldPersistTaps = 'never'
@@ -92,7 +92,12 @@ export const Main = (props) => {
                 /> 
             : view === "showAuction" ?
             new Date(auction.auction_date).getDay() === new Date().getDay()?
-                    <AuctionStart />
+                    <AuctionStart 
+                        reloadAuction = {reloadAuction}
+                        user = {props.user.user}
+                        auction = { auction }
+                        setView = {setView}
+                    />
                 :
                 <ShowAuction 
                     reloadAuction = {reloadAuction}
