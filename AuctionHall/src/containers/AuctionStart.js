@@ -9,6 +9,7 @@ const backendURL = Database
 const auctionRoute = "api/v1/auctions/"
 
 export const AuctionStart = (props) => {
+    console.log(`${new Date} - User: ${props.user.id} view Auction: ${props.auction.id}`)
     const [auctionStart, setAuctionStart] = useState(false)
     // for dev purpose set timer to 5 seconds
     const [auctionCountdownStart, setAuctionCountdownStart] = useState(false)

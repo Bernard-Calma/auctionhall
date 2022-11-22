@@ -1,4 +1,3 @@
-import { useEffect } from "react"
 import { View, Text, StyleSheet, Image } from "react-native"
 import { Database } from "../assets/others/links"
 import { ImagePreview } from "../components/ImagePreview"
@@ -7,6 +6,7 @@ import { ImagePreview } from "../components/ImagePreview"
 const backendURL = Database
 const auctionRoute = "api/v1/auctions/"
 export const ShowAuction = (props) => {
+    console.log(`${new Date} - User: ${props.user.id} view Auction: ${props.auction.id}`)
     // console.log(props.auction.user.id === props.user.id)
     // console.log("AUCTION : " , props.auction.user.id)
     // console.log("USER ID: ", props.user.id)
@@ -31,7 +31,7 @@ export const ShowAuction = (props) => {
             props.reloadAuction(data.data)
         })
     }
-    console.log("Debug: ", props)
+    // console.log("Debug: ", props)
     // console.log(`${props.auction.title} : ${props.auction.participants.length}`)
     date = new Date(props.auction.auction_date)
     return (

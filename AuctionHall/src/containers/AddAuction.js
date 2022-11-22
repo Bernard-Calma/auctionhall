@@ -3,6 +3,7 @@ import { Text, View, StyleSheet, TextInput, Button, Platform, KeyboardAvoidingVi
 import { launchCamera, launchImageLibrary } from "react-native-image-picker";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import { Database } from "../assets/others/links";
+import RNDateTimePicker from "@react-native-community/datetimepicker";
 
 // Database
 const backendURL = Database
@@ -13,6 +14,7 @@ export const AddAuction = ({user, setView, getAuctions}) => {
     const [body, setbody] = useState({
         user: user.user.user.id,
         auction_date: new Date(),
+        auction_time_starts: time,
         title: "test",
         description: "",
         price: 0,
@@ -20,17 +22,28 @@ export const AddAuction = ({user, setView, getAuctions}) => {
         photo: "",
 
     })
-    const [date, setDate] = useState(new Date());
-    const [mode, setMode] = useState('date');
+    let [date, setDate] = useState(body.auction_date);
+    let [time, setTime] = useState(new Date())
     const [show, setShow] = useState(true);
-
+    // console.log("BODY : ", body)
+    // console.log("DATE : ", body.auction_date)
     const onChangeDate = (event, selectedDate) => {
-        const currentDate = selectedDate
         setShow(Platform.OS === 'ios');
-        let tempDate = new Date(currentDate);
-         setbody({...body, auction_date: tempDate})
+        // console.log("SELECTED DATE: " , selectedDate)
+        setDate(new Date(selectedDate))
+        setbody({...body, auction_date: new Date(selectedDate)})
         // console.log(body)
-        
+        // console.log("After change")
+    }
+
+    const onChangeTime = (event, selectedTime) => {
+        setShow(Platform.OS === 'ios');
+        // console.log("SELECTED TIME : " , selectedTime.getHours(), selectedTime.getMinutes())
+        let tempDate = date.setHours(selectedTime.getHours(), selectedTime.getMinutes(),0,0)
+        // console.log("Selected Time: ", selectedTime)
+        // console.log("Date after setting time: ", new Date(tempDate))
+        setTime(new Date(tempDate))
+        setbody({...body, auction_date: new Date(tempDate)})
     }
     const handleChangeText = (text, name) => {
         setbody({...body, [name]: text})
@@ -140,12 +153,19 @@ export const AddAuction = ({user, setView, getAuctions}) => {
                     <View style = {styles.titleContainer}>
                         <Text style = {styles.inputText}>Auction Date</Text>
                         <DateTimePicker 
-                            testID="dateTimePicker"
                             value={date}
-                            mode={mode}
-                            is24Hour={true}
+                            mode="date"
                             display='default'
                             onChange={onChangeDate}
+                        />
+                    </View>
+                    <View style = {styles.titleContainer}>
+                        <Text style = {styles.inputText}>Auction Time</Text>
+                        <DateTimePicker 
+                            value={time}
+                            mode="time"
+                            display = "default"
+                            onChange={onChangeTime}
                         />
                     </View>
 

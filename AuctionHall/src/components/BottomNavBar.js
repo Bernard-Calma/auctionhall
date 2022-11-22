@@ -40,6 +40,7 @@ export const BottomNavBar = (props) => {
                 icons.map((icon, index) => {
                     return(
                         < NavIcon 
+                            getAuctions = {() => props.getAuctions}
                             key = {index}
                             title = {icon.title}
                             imageFilePath = {icon.path}

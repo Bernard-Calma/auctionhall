@@ -44,12 +44,15 @@ export const Main = (props) => {
     // console.log("LENGTH: ", auctions.length)
 
     const handleChangeView = (event) => {
+        getAuctions()
       // console.log("TARGET INST: ", event._targetInst.memoizedProps.title)
       if (!event._targetInst.memoizedProps.title){
         setView("main")
       } else {
         setView(event._targetInst.memoizedProps.title)
       }
+      console.log("View changed to : ", event._targetInst.memoizedProps.title)
+      
     }
 
     const handleShowAuction = (auction) => {
@@ -128,7 +131,7 @@ export const Main = (props) => {
             }
             </ScrollView>
             <BottomNavBar
-                reloadAuction = {reloadAuction}
+                getAuctions = {() => getAuctions}
                 handleChangeView = {handleChangeView}
             />  
         </SafeAreaView>

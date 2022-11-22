@@ -2,12 +2,18 @@ import { Pressable, Image, View, StyleSheet } from "react-native";
 
 export const NavIcon = (properties ) => {
     
-    
+    const handleOnPress = () => {
+        properties.handleChangeView 
+        properties.getAuctions
+
+    }
     // console.log(properties.title, "Nav Icon", properties.imageFilePath, "Path")
     return(
-        <View style = {styles.container}>
+        <View 
+            style = {styles.container}
+            >
             <Pressable 
-                onPress={properties.handleChangeView}
+                onPress={ properties.handleChangeView  }
                 title = {properties.title}
                 >
                 <Image
