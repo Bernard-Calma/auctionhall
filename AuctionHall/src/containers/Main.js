@@ -59,7 +59,7 @@ export const Main = (props) => {
     }
 
     const reloadAuction = (newAuction) => {
-        console.log("reloadAuctions called")
+        console.log("reloadAuctions called", newAuction)
         setAuction(newAuction)
     }
 
@@ -91,7 +91,7 @@ export const Main = (props) => {
                     setView = {setView}
                 /> 
             : view === "showAuction" ?
-            new Date(auction.auction_date).getDay() === new Date().getDay()?
+            new Date(auction?.auction_date).getDay() === new Date().getDay()?
                     <AuctionStart 
                         reloadAuction = {reloadAuction}
                         user = {props.user.user}
@@ -99,13 +99,12 @@ export const Main = (props) => {
                         setView = {setView}
                     />
                 :
-                <ShowAuction 
-                    reloadAuction = {reloadAuction}
-                    user = {props.user.user}
-                    auction = { auction }
-                    setView = {setView}
-                />
-
+                    <ShowAuction 
+                        reloadAuction = {reloadAuction}
+                        user = {props.user.user}
+                        auction = { auction }
+                        setView = {setView}
+                    />
             : view === "myAuctions" ?
                 <MyAuctions 
                     user = {props.user.user}

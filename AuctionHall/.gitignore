@@ -68,3 +68,6 @@ buck-out/
 ./System/
 /System/
 System
+
+
+.env

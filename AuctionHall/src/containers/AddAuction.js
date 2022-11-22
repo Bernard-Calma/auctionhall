@@ -6,9 +6,6 @@ import { Database } from "../assets/others/links";
 
 // Database
 const backendURL = Database
-// Database Development
-// const backendURL = "http://localhost:8000/"
-
 const auctionRoute = "api/v1/auctions/"
 
 export const AddAuction = ({user, setview}) => {
@@ -75,7 +72,7 @@ export const AddAuction = ({user, setview}) => {
                 "Content-Type": "application/json"
             },
         }).then(()=>{
-            // setview("main")
+            setview("main")
         })
     }
     

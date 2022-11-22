@@ -31,6 +31,7 @@ export const ShowAuction = (props) => {
             props.reloadAuction(data.data)
         })
     }
+    console.log("Debug: ", props)
     // console.log(`${props.auction.title} : ${props.auction.participants.length}`)
     date = new Date(props.auction.auction_date)
     return (

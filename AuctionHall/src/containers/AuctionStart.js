@@ -1,7 +1,12 @@
 import { useState } from "react"
 import { Alert, Button, StyleSheet, Text, View } from "react-native"
+import { Database } from "../assets/others/links"
 import { Countdown } from "../components/Countdown"
 import {ImagePreview} from "../components/ImagePreview"
+
+// Database
+const backendURL = Database
+const auctionRoute = "api/v1/auctions/"
 
 export const AuctionStart = (props) => {
     const [auctionStart, setAuctionStart] = useState(false)
@@ -10,7 +15,7 @@ export const AuctionStart = (props) => {
     let [auctionCountdown, setAuctionCountdown] = useState(5)
 
     // Logs
-    const [auctionLogs , setAuctionLogs] = useState([])
+    let [auctionLogs , setAuctionLogs] = useState(props.auction.logs)
 
     const countdown = setTimeout(() => {
         if (auctionCountdownStart && auctionCountdown > 0) setAuctionCountdown(auctionCountdown-=1)
@@ -20,10 +25,6 @@ export const AuctionStart = (props) => {
             setAuctionCountdownStart(false)
         }
     },1000)
- 
-
-
-    console.log(auctionLogs)
 
     const startAuctionButton = () => {
         Alert.alert(
@@ -37,13 +38,27 @@ export const AuctionStart = (props) => {
                     text: "Ok",
                     onPress: () => {
                         setAuctionCountdownStart(true)
-                        setAuctionLogs([...auctionLogs, "Auction Started"])
+                        updateAuction()
+                        props.reloadAuction(props.auction)
                     }
                     
                 }
             ]
             )
         }
+    // console.log(`${backendURL}${auctionRoute}${props.auction.id}`)
+    // console.log("Auction Logs: ",props.auction.logs)
+    // console.log("PROPS: ", props)
+    const updateAuction = () => {
+        fetch(`${backendURL}${auctionRoute}${props.auction.id}`,{
+            method: "PUT",
+            credentials: "include",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({logs: "Auction Started"}),
+        })
+    }
 
     return (
         <View style={styles.container}>
@@ -72,7 +87,11 @@ export const AuctionStart = (props) => {
             <View style={styles.auctionDateContainer}>
                 <View style = {styles.auctionCountdownContainer}>
                     <Text style = {styles.auctionCountdown}>Auction starts in: </Text>
-                    <Text style = {styles.auctionCountdown}>00:0{auctionCountdown}</Text>
+                    {
+                        auctionCountdownStart?<Text style = {styles.auctionCountdown}>00:0{auctionCountdown}</Text>
+                        :<></>
+                    }
+                    
                 </View>  
                 <View style = {styles.countdown}>
                     <Text style = {styles.auctionCountdown}>Countdown: </Text>
@@ -84,7 +103,7 @@ export const AuctionStart = (props) => {
             </View>
             {/* Change this to be auction logs */}
             <View style={styles.descriptionContainer}>
-                <Text style = {styles.descriptionTextSmaller}>{auctionLogs}</Text>
+                <Text style = {styles.descriptionTextSmaller}>{props.auction.logs}</Text>
             </View>
              {/* Change this to be auction logs */}
             <View style = {styles.addEditContainer}>
