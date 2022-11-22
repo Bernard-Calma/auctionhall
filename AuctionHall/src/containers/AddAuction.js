@@ -8,7 +8,7 @@ import { Database } from "../assets/others/links";
 const backendURL = Database
 const auctionRoute = "api/v1/auctions/"
 
-export const AddAuction = ({user, setview}) => {
+export const AddAuction = ({user, setView, getAuctions}) => {
     // console.log(user.user.user.id)
     const [body, setbody] = useState({
         user: user.user.user.id,
@@ -60,7 +60,6 @@ export const AddAuction = ({user, setview}) => {
         // console.log("Body: ", body)
     })
     // console.log(selectedImage.assets[0])
-
     const handleAddAuction = () => {
         // console.log("Add Auction")
         // console.log("Body ", body.photo)
@@ -72,7 +71,8 @@ export const AddAuction = ({user, setview}) => {
                 "Content-Type": "application/json"
             },
         }).then(()=>{
-            setview("main")
+            getAuctions()
+            setView("main")
         })
     }
     
