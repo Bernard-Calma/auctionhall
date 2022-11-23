@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { Alert, Button, StyleSheet, Text, View } from "react-native"
 import { Database } from "../assets/others/links"
+import { AuctionStartCountDown } from "../components/AuctionStartCountDown"
 import { Countdown } from "../components/Countdown"
 import {ImagePreview} from "../components/ImagePreview"
 
@@ -47,6 +48,7 @@ export const AuctionStart = (props) => {
             ]
             )
         }
+
     // console.log(`${backendURL}${auctionRoute}${props.auction.id}`)
     // console.log("Auction Logs: ",props.auction.logs)
     // console.log("PROPS: ", props)
@@ -87,7 +89,11 @@ export const AuctionStart = (props) => {
             
             <View style={styles.auctionDateContainer}>
                 <View style = {styles.auctionCountdownContainer}>
-                    <Text style = {styles.auctionCountdown}>Auction starts in: </Text>
+                    <Text style = {styles.auctionCountdown}>Auction starts in:</Text>
+                    <AuctionStartCountDown 
+                        auction = {props.auction}
+                        styles = {styles}
+                    />
                     {
                         auctionCountdownStart?<Text style = {styles.auctionCountdown}>00:0{auctionCountdown}</Text>
                         :<></>
