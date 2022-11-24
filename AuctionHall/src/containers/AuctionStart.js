@@ -89,16 +89,10 @@ export const AuctionStart = (props) => {
             
             <View style={styles.auctionDateContainer}>
                 <View style = {styles.auctionCountdownContainer}>
-                    <Text style = {styles.auctionCountdown}>Auction starts in:</Text>
                     <AuctionStartCountDown 
                         auction = {props.auction}
                         styles = {styles}
                     />
-                    {
-                        auctionCountdownStart?<Text style = {styles.auctionCountdown}>00:0{auctionCountdown}</Text>
-                        :<></>
-                    }
-                    
                 </View>  
                 <View style = {styles.countdown}>
                     <Text style = {styles.auctionCountdown}>Countdown: </Text>
