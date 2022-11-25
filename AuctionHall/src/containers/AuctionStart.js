@@ -1,19 +1,10 @@
-import { useState } from "react"
 import { StyleSheet, Text, View } from "react-native"
 import {ImagePreview} from "../components/ImagePreview"
 import { RaiseBid } from "../components/RaiseBid"
 import { AuctionDetails } from "./AuctionDetails"
 
 export const AuctionStart = (props) => {
-    console.log(`${new Date} - User: ${props.user.id} view Auction: ${props.auction.id}`)
-    // this starts and ends the auction
-    let [auctionStart, setAuctionStart] = useState(false)
-    // This is starts and end the bid countdown
-    let [bidCountdown, setBidCountdown] = useState(false)
-    let [auctionCountdown, setAuctionCountdown] = useState(5)
-    // console.log("Auction Start: ",auctionStart)
-    // console.log("Bid Countdown: ",bidCountdown)
-
+    // console.log("PROPS", props)
     return (
         <View style={styles.container}>
             <View style={styles.imageContainer}>
@@ -25,12 +16,14 @@ export const AuctionStart = (props) => {
             <AuctionDetails 
                 style = {{flex: 1}}
                 auction = {props.auction}
+                reloadAuction = {props.reloadAuction}
             />
             <View style = {styles.addEditContainer}>
                 {
                     !(props.user.id === props.auction.user.id) ?
                     <>
                         <RaiseBid 
+                            reloadAuction = {props.reloadAuction}
                             user = {props.user}
                             auction = {props.auction}
                         />

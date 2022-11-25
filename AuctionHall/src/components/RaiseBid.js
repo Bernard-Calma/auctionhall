@@ -7,9 +7,9 @@ const auctionRoute = "api/v1/auctions/start/"
 
 export const RaiseBid = (props) => {
     const handleRaiseBid = () => {
-        console.log("Bid Raised by: " , props.user.id)
-        console.log("Running Price: ", props.auction.price + 10)
-        sendRaiseBid()
+        // console.log("Bid Raised by: " , props.user.id)
+        // console.log("Running Price: ", props.auction.price + 10)
+        sendRaiseBid()   
     }
 
     const sendRaiseBid = () => {
@@ -19,9 +19,12 @@ export const RaiseBid = (props) => {
                 "Content-Type": "application/json"
             },
             credentials: "include",
-            body: JSON.stringify({price: props.auction.price + 10})
+            body: JSON.stringify({
+                price: props.auction.price + 10,
+                winner: props.user.id
+            })
         }).then(res => res.json())
-        .then(data => console.log(data))
+        .then(data => props.reloadAuction(data.data))
         .catch(err => console.error("ERROR: ", err))
     }
 

@@ -7,14 +7,14 @@ const backendURL = Database
 const auctionRoute = "api/v1/auctions/start/"
 
 export const AuctionDetails = (props) => {
-    // console.log(props.auction.id)
+    
     const [auction , setAuction] = useState({
         title: "",
         price: 0,
-        winner: "",
+        winner: {username: ""},
         description: "",
         user: {userame: ""},
-        participants: "",
+        participants: [],
     })
     const [timeRemaining, setTimeRemaining] = useState({
         hours: 0,
@@ -25,7 +25,10 @@ export const AuctionDetails = (props) => {
     const getAuction = useCallback(() => {
         fetch(`${backendURL}${auctionRoute}${props.auction.id}`)
         .then(response => response.json())
-        .then(data => setAuction(data.data)
+        .then(data => {
+            console.log("DATA", data.data)
+            props.reloadAuction(data.data)
+            setAuction(data.data)}
             )
     },[auction])
     
@@ -59,7 +62,7 @@ export const AuctionDetails = (props) => {
                 <Text style = {styles.runningPrice}> ${auction.price} </Text>
             </Text>
             <Text style = {styles.title}>Highest Bidder: 
-                <Text style = {styles.description}> {auction.winner}</Text>
+                <Text style = {styles.description}> {auction.winner.username}</Text>
             </Text>
             <View style = {styles.container}>
                 <View>
