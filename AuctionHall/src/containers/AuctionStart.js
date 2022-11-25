@@ -4,6 +4,7 @@ import { Database } from "../assets/others/links"
 import { AuctionStartCountDown } from "../components/AuctionStartCountDown"
 import {ImagePreview} from "../components/ImagePreview"
 import { RaiseBid } from "../components/RaiseBid"
+import { AuctionDetails } from "./AuctionDetails"
 
 export const AuctionStart = (props) => {
     console.log(`${new Date} - User: ${props.user.id} view Auction: ${props.auction.id}`)
@@ -23,34 +24,10 @@ export const AuctionStart = (props) => {
                     uri={props.auction.photo}
                 />
             </View>
-            <View style={styles.titleContainer}>
-                <View style = {styles.titleContainerInisde}>
-                    <Text 
-                        adjustsFontSizeToFit
-                        style = {styles.title}>{props.auction.title}</Text>
-                    <Text 
-                        adjustsFontSizeToFit
-                        style = {styles.descriptionText}>Host: {props.auction.user.username}</Text>
-                        <Text style = {styles.descriptionText}>Participants: {props.auction.participants.length}</Text>
-                </View>
-                <View style = {styles.titleContainerInisde}>
-                    <Text style = {styles.currentPrice}>Current Price: ${props.auction.price}</Text>
-                    <Text style = {styles.topUser}>Top User: UserID:{props.auction.participants[0]}</Text>
-                </View>
-            </View>
-            <AuctionStartCountDown 
-                setAuctionStart = {setAuctionStart}
-                setBidCountdown = {setBidCountdown}
-                auctionStart = {auctionStart}
-                bidCountdown = {bidCountdown}
+            <AuctionDetails 
+                style = {{flex: 1}}
                 auction = {props.auction}
-                styles = {styles}
-                />
-            {/* Change this to be auction logs */}
-            <View style={styles.descriptionContainer}>
-                <Text style = {styles.descriptionTextSmaller}>{props.auction.logs}</Text>
-            </View>
-             {/* Change this to be auction logs */}
+            />
             <View style = {styles.addEditContainer}>
                 {
                     !(props.user.id === props.auction.user.id) ?
