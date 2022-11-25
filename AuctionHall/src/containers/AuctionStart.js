@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react"
-import { Alert, Button, StyleSheet, Text, View } from "react-native"
+import { useState } from "react"
+import { StyleSheet, Text, View } from "react-native"
 import { Database } from "../assets/others/links"
 import { AuctionStartCountDown } from "../components/AuctionStartCountDown"
-import { Countdown } from "../components/Countdown"
 import {ImagePreview} from "../components/ImagePreview"
+import { RaiseBid } from "../components/RaiseBid"
 
 export const AuctionStart = (props) => {
     console.log(`${new Date} - User: ${props.user.id} view Auction: ${props.auction.id}`)
@@ -55,7 +55,7 @@ export const AuctionStart = (props) => {
                 {
                     !(props.user.id === props.auction.user.id) ?
                     <>
-                        <Text style = {styles.addEdit}>$</Text>
+                        <RaiseBid />
                     </>  
                     :
                     <>
@@ -83,7 +83,6 @@ styles = StyleSheet.create({
         fontWeight: "500"
     },
     addEditContainer: {
-        flex: .05,
         justifyContent: "center",
         alignItems: "center"
     },
