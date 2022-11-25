@@ -1,16 +1,31 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Text, View } from "react-native"
 
 
 export const Countdown = (props) => {
-    let [timer, setTimer] = useState(10)
+  console.log("Bid Countdown Starts")
+  // console.log("COUNTDOWN - auctionStart: ", props.auctionStart)
+  // console.log("BIDCOUNTDOWN: ", props.bidCountdown)
+  let [timer, setTimer] = useState(10)
+  // console.log("COUNTDOWN - timer: ", timer)
+  useEffect( () => {  
+    const interval = setInterval(() => {
+      console.log("Bid Countdown : ", props.bidCountdown)
+      if (props.bidCountdown && timer > 0) {
+        console.log("Timer going down")
+        setTimer(timer-=1)
+      }
+      else if (timer === 0){
+        console.log("Bid Countdown Stops")
+        props.setAuctionStart()
+        props.setBidCountdown()
+      }
 
-    const countdown = setTimeout(() => {
-        if (props.auctionStart && timer > 0) setTimer(timer-=1)
-        else clearTimeout(countdown)
     },1000)
-
-    
+    return () => {
+        clearInterval(interval);
+    }
+  }, []) 
   return(
     <View>
         <Text style = {props.style}>{timer}</Text>

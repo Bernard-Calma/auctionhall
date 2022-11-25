@@ -1,67 +1,19 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Alert, Button, StyleSheet, Text, View } from "react-native"
 import { Database } from "../assets/others/links"
 import { AuctionStartCountDown } from "../components/AuctionStartCountDown"
 import { Countdown } from "../components/Countdown"
 import {ImagePreview} from "../components/ImagePreview"
 
-// Database
-const backendURL = Database
-const auctionRoute = "api/v1/auctions/"
-
 export const AuctionStart = (props) => {
     console.log(`${new Date} - User: ${props.user.id} view Auction: ${props.auction.id}`)
-    const [auctionStart, setAuctionStart] = useState(false)
-    // for dev purpose set timer to 5 seconds
-    const [auctionCountdownStart, setAuctionCountdownStart] = useState(false)
+    // this starts and ends the auction
+    let [auctionStart, setAuctionStart] = useState(false)
+    // This is starts and end the bid countdown
+    let [bidCountdown, setBidCountdown] = useState(false)
     let [auctionCountdown, setAuctionCountdown] = useState(5)
-
-    // Logs
-    let [auctionLogs , setAuctionLogs] = useState(props.auction.logs)
-
-    const countdown = setTimeout(() => {
-        if (auctionCountdownStart && auctionCountdown > 0) setAuctionCountdown(auctionCountdown-=1)
-        else if (auctionCountdown === 0) {
-            clearTimeout(countdown)
-            setAuctionStart(true)
-            setAuctionCountdownStart(false)
-        }
-    },1000)
-
-    const startAuctionButton = () => {
-        Alert.alert(
-            "Start Auction",
-            "Start Auction Now?",
-            [
-                {
-                    text: "Cancel",
-                },
-                {
-                    text: "Ok",
-                    onPress: () => {
-                        setAuctionCountdownStart(true)
-                        updateAuction()
-                        props.reloadAuction(props.auction)
-                    }
-                    
-                }
-            ]
-            )
-        }
-
-    // console.log(`${backendURL}${auctionRoute}${props.auction.id}`)
-    // console.log("Auction Logs: ",props.auction.logs)
-    // console.log("PROPS: ", props)
-    const updateAuction = () => {
-        fetch(`${backendURL}${auctionRoute}${props.auction.id}`,{
-            method: "PUT",
-            credentials: "include",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({logs: "Auction Started"}),
-        })
-    }
+    // console.log("Auction Start: ",auctionStart)
+    // console.log("Bid Countdown: ",bidCountdown)
 
     return (
         <View style={styles.container}>
@@ -86,22 +38,14 @@ export const AuctionStart = (props) => {
                     <Text style = {styles.topUser}>Top User: UserID:{props.auction.participants[0]}</Text>
                 </View>
             </View>
-            
-            <View style={styles.auctionDateContainer}>
-                <View style = {styles.auctionCountdownContainer}>
-                    <AuctionStartCountDown 
-                        auction = {props.auction}
-                        styles = {styles}
-                    />
-                </View>  
-                <View style = {styles.countdown}>
-                    <Text style = {styles.auctionCountdown}>Countdown: </Text>
-                    <Countdown 
-                        style = {styles.auctionCountdown}
-                        auctionStart = {auctionStart}
-                    />
-                </View> 
-            </View>
+            <AuctionStartCountDown 
+                setAuctionStart = {setAuctionStart}
+                setBidCountdown = {setBidCountdown}
+                auctionStart = {auctionStart}
+                bidCountdown = {bidCountdown}
+                auction = {props.auction}
+                styles = {styles}
+                />
             {/* Change this to be auction logs */}
             <View style={styles.descriptionContainer}>
                 <Text style = {styles.descriptionTextSmaller}>{props.auction.logs}</Text>
@@ -115,11 +59,6 @@ export const AuctionStart = (props) => {
                     </>  
                     :
                     <>
-                        <Button 
-                            style = {styles.start} 
-                            title = "Start Auction"
-                            onPress={()=>startAuctionButton()}
-                            />
                     </>
                 }
                 
@@ -149,6 +88,7 @@ styles = StyleSheet.create({
         alignItems: "center"
     },
     auctionDateContainer: {
+        borderWidth: 1,
         flexDirection: 'row',
         justifyContent: "space-between"
     },
