@@ -26,7 +26,7 @@ export const AuctionDetails = (props) => {
         fetch(`${backendURL}${auctionRoute}${props.auction.id}`)
         .then(response => response.json())
         .then(data => {
-            console.log("DATA", data.data)
+            // console.log("DATA", data.data)
             props.reloadAuction(data.data)
             setAuction(data.data)}
             )
@@ -57,14 +57,14 @@ export const AuctionDetails = (props) => {
     },[auction])
     
     return(
-        <View style = {{flex: 1}}>
+        <View style = {styles.container}>
             <Text style = {styles.runningPrice}>Current Bid Price: 
                 <Text style = {styles.runningPrice}> ${auction.price} </Text>
             </Text>
             <Text style = {styles.title}>Highest Bidder: 
                 <Text style = {styles.description}> {auction.winner?.username}</Text>
             </Text>
-            <View style = {styles.container}>
+            <View style = {styles.descriptionContainer}>
                 <View>
                     <Text style = {styles.title}>Title:
                         <Text style = {styles.description}> {auction.title}</Text>
@@ -105,8 +105,9 @@ export const AuctionDetails = (props) => {
 styles = StyleSheet.create({
     container: {
         // borderWidth: 1,
-        // borderColor: 'red',
-        flexDirection: "row",
+        // borderColor: 'blue',
+        flex: 1,
+        flexDirection: "column",
         justifyContent: "space-between",
         margin: 5
     },
@@ -114,6 +115,12 @@ styles = StyleSheet.create({
         fontFamily: "copperplate",
         fontSize: 15,
         fontWeight: "100"
+    },
+    descriptionContainer: {
+        // borderWidth: 1,
+        // borderColor: 'green',
+        flexDirection: "row",
+        justifyContent: "space-between"
     },
     logsContainer: {
         borderWidth: 1,
@@ -133,5 +140,6 @@ styles = StyleSheet.create({
         fontWeight: "500",
         margin: 5,
     },
+
 
 })
