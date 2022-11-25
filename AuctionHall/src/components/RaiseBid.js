@@ -27,21 +27,30 @@ export const RaiseBid = (props) => {
         .then(data => props.reloadAuction(data.data))
         .catch(err => console.error("ERROR: ", err))
     }
-
-
-
+    if (props.auction.winner) 
     return(
-            <Text style = {
-                {
-                    borderWidth: 1,
-                    borderRadius: 20,
-                    fontSize: 50,
-                    textAlign: "center",
-                    backgroundColor: "gray",
-                    overflow: "hidden"
-                }}
-                onPress = {() => handleRaiseBid()}    
-            >$</Text>
+        <>
+            {
+                (props.auction.winner.id === props.user.id)?
+                <>
+                    
+                </>
+                :
+                <>
+                    <Text style = {
+                        {
+                            borderWidth: 1,
+                            borderRadius: 20,
+                            fontSize: 50,
+                            textAlign: "center",
+                            backgroundColor: "gray",
+                            overflow: "hidden"
+                        }}
+                        onPress = {() => handleRaiseBid()}    
+                    >$</Text>
+                </>
+            }
+        </>
     )
 
 }

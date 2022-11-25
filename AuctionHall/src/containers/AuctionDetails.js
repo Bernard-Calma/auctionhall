@@ -62,7 +62,7 @@ export const AuctionDetails = (props) => {
                 <Text style = {styles.runningPrice}> ${auction.price} </Text>
             </Text>
             <Text style = {styles.title}>Highest Bidder: 
-                <Text style = {styles.description}> {auction.winner.username}</Text>
+                <Text style = {styles.description}> {auction.winner?.username}</Text>
             </Text>
             <View style = {styles.container}>
                 <View>
