@@ -21,12 +21,11 @@ export const AuctionDetails = (props) => {
         minutes: 0,
         seconds: 0,
     })
-    console.log("AUCTION: ", auction)
+    // console.log("AUCTION: ", timeRemaining)
     const getAuction = useCallback(() => {
         fetch(`${backendURL}${auctionRoute}${props.auction.id}`)
         .then(response => response.json())
         .then(data => setAuction(data.data)
-            // console.log(data.data)
             )
     },[auction])
     
@@ -42,18 +41,17 @@ export const AuctionDetails = (props) => {
             seconds: seconds
         })
     }
-
+    
     useEffect(() => {
         const interval = setInterval(() => {
             getAuction()
             setCountDown(auction)
-
         }, 1000)
         return () => {
             clearInterval(interval)
         }
         
-    },[])
+    },[auction])
     
     return(
         <View style = {{flex: 1}}>

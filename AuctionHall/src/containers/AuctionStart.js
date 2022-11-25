@@ -1,7 +1,5 @@
 import { useState } from "react"
 import { StyleSheet, Text, View } from "react-native"
-import { Database } from "../assets/others/links"
-import { AuctionStartCountDown } from "../components/AuctionStartCountDown"
 import {ImagePreview} from "../components/ImagePreview"
 import { RaiseBid } from "../components/RaiseBid"
 import { AuctionDetails } from "./AuctionDetails"
@@ -32,7 +30,10 @@ export const AuctionStart = (props) => {
                 {
                     !(props.user.id === props.auction.user.id) ?
                     <>
-                        <RaiseBid />
+                        <RaiseBid 
+                            user = {props.user}
+                            auction = {props.auction}
+                        />
                     </>  
                     :
                     <>
