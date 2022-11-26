@@ -6,7 +6,7 @@ import { ImagePreview } from "../components/ImagePreview"
 const backendURL = Database
 const auctionRoute = "api/v1/auctions/"
 export const ShowAuction = (props) => {
-    console.log(`${new Date} - User: ${props.user.id} view Auction: ${props.auction.id}`)
+    // console.log(`${new Date} - User: ${props.user.id} view Auction: ${props.auction.id}`)
     // console.log(props.auction.user.id === props.user.id)
     // console.log("AUCTION : " , props.auction.user.id)
     // console.log("USER ID: ", props.user.id)
@@ -36,6 +36,7 @@ export const ShowAuction = (props) => {
     date = new Date(props.auction.auction_date)
     return (
         <View style={styles.container}>
+            <Text>Show Auction</Text>
             <View style={styles.imageContainer}>
                 < ImagePreview 
                     style = {styles.image}
@@ -60,34 +61,53 @@ export const ShowAuction = (props) => {
                 <Text style = {styles.descriptionText}>Description:</Text>
                 <Text style = {styles.descriptionTextSmaller}>{props.auction.description}</Text>
             </View>
-            <View style={styles.auctionDateContainer}>
-                <Text style = {styles.descriptionText}>Auction Date: {date.toDateString()}</Text>
-                <Text style = {styles.descriptionText}>Participants: {props.auction.participants.length}</Text>
-            </View>
-            <View style = {styles.addEditContainer}>
                 {
-                    !(props.user.id === props.auction.user.id) ?
+                    new Date().getTime() < new Date(props.auction?.auction_date).getTime()?
+                    <>
+                    <View style={styles.auctionDateContainer}>
+                        <Text style = {styles.descriptionText}>Auction Date: {date.toDateString()}</Text>
+                        <Text style = {styles.descriptionText}>Participants: {props.auction.participants.length}</Text>
+                    </View>
+                    <View style = {styles.addEditContainer}>
+                        {
+                            !(props.user.id === props.auction.user.id) ?
+                            <>
+                                {
+                                    props.auction.participants.includes(props.user.id)?
+                                    <>
+                                    </>
+                                    :
+                                    <>
+                                        <Text 
+                                            style = {styles.addEdit}
+                                            onPress = {handleJoin}
+                                        >Join</Text>
+                                    </>
+                                }
+                            </>  
+                            :
+                            <>
+                                <Text style = {styles.addEdit}>Edit</Text>
+                            </>
+                        }
+                        
+                    </View>
+                    </>
+                    :
                     <>
                         {
-                            props.auction.participants.includes(props.user.id)?
+                            props.auction.winner?.id?
                             <>
+                                <Text style = {styles.winner}>Auction Winner: User: {props.auction.winner.id}</Text>
                             </>
                             :
                             <>
-                                <Text 
-                                    style = {styles.addEdit}
-                                    onPress = {handleJoin}
-                                >Join</Text>
+                                <Text style = {styles.winner}>No bidder</Text>
                             </>
                         }
-                    </>  
-                    :
-                    <>
-                        <Text style = {styles.addEdit}>Edit</Text>
+                        
                     </>
-                }
-                
-            </View>
+                }   
         </View>
     )
 }
@@ -160,5 +180,10 @@ styles = StyleSheet.create({
     titleContainerInisde: {
         flex: 1,
         // borderWidth: 1,
+    },
+    winner: {
+        fontSize: 30,
+        margin: 5,
+        fontFamily: "copperplate",
     }
 })

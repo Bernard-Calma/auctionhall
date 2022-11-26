@@ -19,7 +19,7 @@ export const AuctionStart = (props) => {
                 auction = {props.auction}
                 reloadAuction = {props.reloadAuction}
             />
-            <View style = {styles.addEditContainer}>
+            <View style = {styles.raiseBid}>
                 {
                     !(props.user.id === props.auction.user.id) ?
                     <>

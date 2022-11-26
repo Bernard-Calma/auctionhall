@@ -62,7 +62,7 @@ export const Main = (props) => {
     }
 
     const reloadAuction = (newAuction) => {
-        console.log("reloadAuctions called", newAuction)
+        // console.log("reloadAuctions called", newAuction)
         setAuction(newAuction)
     }
 
@@ -70,7 +70,9 @@ export const Main = (props) => {
     // console.log("DATE TODAY: ", new Date().getDay())
     // console.log("AUCTION: ", new Date(auction.auction_date).getDay()=== new Date().getDay())
     // console.log("USER: ",props.user.user)
-    console.log(auction?.auction_date)
+    // console.log("AUCTION DATE TIME: "+ auction.id + ": "+ new Date(auction?.auction_date).getTime())
+    // console.log("DATE NOW: " ,new Date().getTime())
+    // console.log("DATE COMPARISSON: ", new Date().getTime() < new Date(auction?.auction_date).getTime())
     return (
         <SafeAreaView style = {styles.mainContainer}>
             <SearchBar style = {styles.searchBar}/>
@@ -96,7 +98,7 @@ export const Main = (props) => {
                     getAuctions = {getAuctions}
                 /> 
             : view === "showAuction" ?
-            new Date(auction?.auction_date).getDay() === new Date().getDay() && (auction.participants.includes(props.user.user.id) || props.user.user.id === auction.user.id)?
+            new Date().getTime() < new Date(auction?.auction_date).getTime() && (auction.participants.includes(props.user.user.id) || props.user.user.id === auction.user.id)?
                     <AuctionStart 
                         reloadAuction = {reloadAuction}
                         user = {props.user.user}

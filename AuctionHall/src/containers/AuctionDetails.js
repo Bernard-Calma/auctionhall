@@ -39,9 +39,9 @@ export const AuctionDetails = (props) => {
         let minutes = Math.floor(seconds / 60)
         let hours = Math.floor(minutes / 60)
         setTimeRemaining({
-            hours: hours,
-            minutes: minutes,
-            seconds: seconds
+            hours: hours % 24,
+            minutes: minutes % 60,
+            seconds: seconds % 60
         })
     }
     

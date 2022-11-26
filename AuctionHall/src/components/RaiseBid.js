@@ -20,8 +20,9 @@ export const RaiseBid = (props) => {
             },
             credentials: "include",
             body: JSON.stringify({
-                price: props.auction.price + 10,
-                winner: props.user.id
+                price: props.auction.price + props.auction.price_increment,
+                winner: props.user.id,
+                logs: `${props.auction.logs}\nUser ${props.user.id}:  increased the bid by ${props.auction.price_increment}`
             })
         }).then(res => res.json())
         .then(data => props.reloadAuction(data.data))
@@ -33,7 +34,6 @@ export const RaiseBid = (props) => {
             {
                 (props.auction.winner.id === props.user.id)?
                 <>
-                    
                 </>
                 :
                 <>
@@ -52,5 +52,16 @@ export const RaiseBid = (props) => {
             }
         </>
     )
+    else return <Text style = {
+        {
+            borderWidth: 1,
+            borderRadius: 20,
+            fontSize: 50,
+            textAlign: "center",
+            backgroundColor: "gray",
+            overflow: "hidden"
+        }}
+        onPress = {() => handleRaiseBid()}    
+    >$</Text>
 
 }
