@@ -87,6 +87,7 @@ export const AddAuction = ({user, setView, getAuctions}) => {
             getAuctions()
             setView("main")
         })
+        .catch(err => console.error("ERROR: ", err))
     }
     
     return(

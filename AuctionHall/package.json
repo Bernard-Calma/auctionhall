@@ -9,6 +9,7 @@
     "test": "jest",
     "lint": "eslint .",
     "pods": "cd ios && arch -x86_64 pod install && cd ..",
+    "gradle": "cd android && ./gradlew clean && cd ..",
     "pods-intel": "cd ios && pod install && cd.."
   },
   "dependencies": {

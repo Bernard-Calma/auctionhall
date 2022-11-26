@@ -58,6 +58,7 @@ export const Login = (props) => {
             setUser({...user, "message":data.status.message})
             // console.log(data)
         })
+        .catch(err => console.error("ERROR: ", err))
     }
     if (!props.user.signUp) {
         return(

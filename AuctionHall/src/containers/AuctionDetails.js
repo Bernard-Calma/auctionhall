@@ -31,7 +31,9 @@ export const AuctionDetails = (props) => {
             props.reloadAuction(data.data)
             setAuction(data.data)}
             )
+            .catch(err => console.error("ERROR: ", err))
     },[auction])
+    
     
     const setCountDown = (auction) => {
         // console.log(auction.auction_date)
@@ -58,7 +60,12 @@ export const AuctionDetails = (props) => {
     },[auction])
     
     return(
-        <View style = {styles.container}>
+        <View style = {{
+            flex: 1,
+            flexDirection: "column",
+            justifyContent: "space-between",
+            margin: 5
+        }}>
             <Text style = {styles.runningPrice}>Current Bid Price: 
                 <Text style = {styles.runningPrice}> ${auction.price} </Text>
             </Text>
@@ -104,14 +111,6 @@ export const AuctionDetails = (props) => {
 }
 
 styles = StyleSheet.create({
-    container: {
-        // borderWidth: 1,
-        // borderColor: 'blue',
-        flex: 1,
-        flexDirection: "column",
-        justifyContent: "space-between",
-        margin: 5
-    },
     description: {
         fontFamily: "copperplate",
         fontSize: 15,

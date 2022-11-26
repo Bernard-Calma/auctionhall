@@ -28,7 +28,9 @@ export const Main = (props) => {
     const getAuctions = useCallback(() => {
         console.log("getAuctions called")
         // console.log(`${backendURL}${auctionRoute}`)
-        fetch(`${backendURL}${auctionRoute}`)
+        fetch(`${backendURL}${auctionRoute}`, {
+            include: "credentials"
+        })
         .then(response => {
             return response.json()
         })
@@ -112,6 +114,7 @@ export const Main = (props) => {
                         user = {props.user.user}
                         auction = { auction }
                         setView = {setView}
+                        styles = {styles}
                     />
             : view === "myAuctions" ?
                 <MyAuctions 
@@ -160,5 +163,15 @@ const styles = StyleSheet.create({
         height: '10%',
         marginBottom: 30,
         borderWidth: 1,
-    }
+    },
+    image: {
+        flex: 1,
+    },
+    imageContainer: {
+        // borderWidth: 1,
+        // borderColor: 'blue',
+        flex: 1,
+        // background color until image is implemented
+        backgroundColor: "gray"
+    },
 })

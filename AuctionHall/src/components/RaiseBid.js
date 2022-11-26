@@ -15,7 +15,7 @@ export const RaiseBid = (props) => {
 
     const sendRaiseBid = () => {
         fetch(`${backendURL}${auctionRoute}${props.auction.id}`, {
-            method: 'POST',
+            method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },

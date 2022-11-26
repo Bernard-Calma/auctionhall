@@ -3,6 +3,7 @@ import { ImagePreview } from "../components/ImagePreview"
 
 // ENV
 import { API_URL} from "@env"
+import { useEffect } from "react"
 // Database
 const backendURL = API_URL
 const auctionRoute = "api/v1/auctions/"
@@ -31,16 +32,19 @@ export const ShowAuction = (props) => {
             // console.log("PROPS : ", props.auction)
             props.reloadAuction(data.data)
         })
+        .catch(err => console.error("ERROR: ", err))
     }
     // console.log("Debug: ", props)
     // console.log(`${props.auction.title} : ${props.auction.participants.length}`)
-    date = new Date(props.auction.auction_date)
+    useEffect(()=>{
+        console.log("Show Auction Loaded")
+    })
     return (
         <View style={styles.container}>
             <Text>Show Auction</Text>
-            <View style={styles.imageContainer}>
+            <View style={props.styles.imageContainer}>
                 < ImagePreview 
-                    style = {styles.image}
+                    style = {props.styles.image}
                     uri={props.auction.photo}
                 />
             </View>
