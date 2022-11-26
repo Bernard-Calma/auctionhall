@@ -66,43 +66,43 @@ export const AuctionDetails = (props) => {
             justifyContent: "space-between",
             margin: 5
         }}>
-            <Text style = {styles.runningPrice}>Current Bid Price: 
-                <Text style = {styles.runningPrice}> ${auction.price} </Text>
+            <Text style = {auctionStartStyles.runningPrice}>Current Bid Price: 
+                <Text style = {auctionStartStyles.runningPrice}> ${auction.price} </Text>
             </Text>
-            <Text style = {styles.title}>Highest Bidder: 
-                <Text style = {styles.description}> {auction.winner?.username}</Text>
+            <Text style = {auctionStartStyles.title}>Highest Bidder: 
+                <Text style = {auctionStartStyles.description}> {auction.winner?.username}</Text>
             </Text>
-            <View style = {styles.descriptionContainer}>
+            <View style = {auctionStartStyles.descriptionContainer}>
                 <View>
-                    <Text style = {styles.title}>Title:
-                        <Text style = {styles.description}> {auction.title}</Text>
+                    <Text style = {auctionStartStyles.title}>Title:
+                        <Text style = {auctionStartStyles.description}> {auction.title}</Text>
                     </Text>
                     
-                    <Text style = {styles.title}>Owner:
-                        <Text style = {styles.description}> {auction.user.username}</Text>
+                    <Text style = {auctionStartStyles.title}>Owner:
+                        <Text style = {auctionStartStyles.description}> {auction.user.username}</Text>
                     </Text>
-                    <Text style = {styles.title}>participants: 
-                        <Text style = {styles.description}> {auction.participants.length}</Text>
+                    <Text style = {auctionStartStyles.title}>participants: 
+                        <Text style = {auctionStartStyles.description}> {auction.participants.length}</Text>
                     </Text>
                 </View>
                 <View>
                     {/* removing bid countdown, will do one countdown only for now */}
-                    {/* <Text style = {styles.title}>Bid Countdown: 
-                        <Text style = {styles.description}> {auction.highest_bid} </Text>
+                    {/* <Text style = {auctionStartStyles.title}>Bid Countdown: 
+                        <Text style = {auctionStartStyles.description}> {auction.highest_bid} </Text>
                     </Text> */}
-                    <Text style = {styles.title}>(Time Remaining)
-                        {/* <Text style = {styles.description}> {Date(auction.auction_date)} </Text> */}
+                    <Text style = {auctionStartStyles.title}>(Time Remaining)
+                        {/* <Text style = {auctionStartStyles.description}> {Date(auction.auction_date)} </Text> */}
                     </Text>
-                    <Text style = {styles.title}>Hours: {timeRemaining.hours}</Text>
-                    <Text style = {styles.title}>Minutes: {timeRemaining.minutes}</Text>
-                    <Text style = {styles.title}>Seconds: {timeRemaining.seconds}</Text>
+                    <Text style = {auctionStartStyles.title}>Hours: {timeRemaining.hours}</Text>
+                    <Text style = {auctionStartStyles.title}>Minutes: {timeRemaining.minutes}</Text>
+                    <Text style = {auctionStartStyles.title}>Seconds: {timeRemaining.seconds}</Text>
                 </View>
             </View>
             <View style = {{flex: 1}}>
-                {/* <Text style = {styles.description}>Increment: ${auction.price_increment}</Text> */}
-                <View style = {styles.logsContainer}>
-                    <Text style = {styles.title}>Logs: 
-                        <Text style = {styles.description}> {auction.logs}</Text>
+                {/* <Text style = {auctionStartStyles.description}>Increment: ${auction.price_increment}</Text> */}
+                <View style = {auctionStartStyles.logsContainer}>
+                    <Text style = {auctionStartStyles.title}>Logs: 
+                        <Text style = {auctionStartStyles.description}> {auction.logs}</Text>
                     </Text>
                 </View>
             </View>
@@ -110,7 +110,7 @@ export const AuctionDetails = (props) => {
     )
 }
 
-styles = StyleSheet.create({
+auctionStartStyles = StyleSheet.create({
     description: {
         fontFamily: "copperplate",
         fontSize: 15,
