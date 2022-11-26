@@ -1,9 +1,10 @@
 import { View, Text, StyleSheet, Image } from "react-native"
-import { Database } from "../assets/others/links"
 import { ImagePreview } from "../components/ImagePreview"
 
+// ENV
+import { API_URL} from "@env"
 // Database
-const backendURL = Database
+const backendURL = API_URL
 const auctionRoute = "api/v1/auctions/"
 export const ShowAuction = (props) => {
     // console.log(`${new Date} - User: ${props.user.id} view Auction: ${props.auction.id}`)

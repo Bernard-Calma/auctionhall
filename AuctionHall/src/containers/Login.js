@@ -9,13 +9,11 @@ import { Textbox } from "../components/Textbox";
 import { LoginButton } from "../components/buttons/LoginButton";
 import { LoginFooter } from "./LoginFooter";
 import { SignUp } from "./SignUp";
-import { Database } from "../assets/others/links";
 
+// ENV
+import { API_URL} from "@env"
 // Database
-const backendURL = Database
-// Database Development
-// const backendURL = "http://localhost:8000/"
-
+const backendURL = API_URL
 const userRoute = "api/v1/auctions/users"
 export const Login = (props) => {
     const [user, setUser] = useState({

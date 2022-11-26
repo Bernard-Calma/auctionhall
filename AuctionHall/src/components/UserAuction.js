@@ -1,14 +1,10 @@
 import { useCallback, useState } from "react"
 import { StyleSheet, Text, View, Dimensions, Pressable, Alert, Image  } from "react-native"
-import { Database } from "../assets/others/links"
 
-
-
+// ENV
+import { API_URL} from "@env"
 // Database
-const backendURL = Database
-// Database Development
-// const backendURL = "http://localhost:8000/"
-
+const backendURL = API_URL
 const auctionRoute = "api/v1/auctions/"
 
 export const UserAuction = (props) => {

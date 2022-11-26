@@ -13,11 +13,12 @@ import { Auctions } from "./Auctions"
 import { MyAuctions } from "./MyAuctions"
 import { ShowAuction } from "./ShowAuction"
 import { Profile } from "./Profile"
-import { Database } from "../assets/others/links"
 import { AuctionStart } from "./AuctionStart"
 
+// ENV
+import { API_URL} from "@env"
 // Database
-const backendURL = Database
+const backendURL = API_URL
 const auctionRoute = "api/v1/auctions/"
 
 export const Main = (props) => {

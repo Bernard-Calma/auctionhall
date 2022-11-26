@@ -1,8 +1,9 @@
 import { Text, View } from "react-native"
-import { Database } from "../assets/others/links"
 
+// ENV
+import { API_URL} from "@env"
 // Database
-const backendURL = Database
+const backendURL = API_URL
 const auctionRoute = "api/v1/auctions/start/"
 
 export const RaiseBid = (props) => {

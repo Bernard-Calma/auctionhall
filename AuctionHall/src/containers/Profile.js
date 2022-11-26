@@ -1,9 +1,10 @@
 import { useState } from "react"
 import { Button, StyleSheet, Text, TextInput, View } from "react-native"
-import { Database } from "../assets/others/links"
 
+// ENV
+import { API_URL} from "@env"
 // Database
-const backendURL = Database
+const backendURL = API_URL
 const auctionRoute = "api/v1/auctions/users/"
 
 export const Profile = (props) => {

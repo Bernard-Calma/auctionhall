@@ -2,11 +2,11 @@ import { useState } from "react";
 import { Text, View, StyleSheet, TextInput, Button, Platform, KeyboardAvoidingView, Pressable, Image } from "react-native";
 import { launchCamera, launchImageLibrary } from "react-native-image-picker";
 import DateTimePicker from "@react-native-community/datetimepicker";
-import { Database } from "../assets/others/links";
-import RNDateTimePicker from "@react-native-community/datetimepicker";
 
+// ENV
+import { API_URL} from "@env"
 // Database
-const backendURL = Database
+const backendURL = API_URL
 const auctionRoute = "api/v1/auctions/"
 
 export const AddAuction = ({user, setView, getAuctions}) => {
