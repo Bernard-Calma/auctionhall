@@ -2,7 +2,9 @@ import React, { useState } from "react";
 import {
     View,
     Text,
-    StyleSheet
+    StyleSheet,
+    KeyboardAvoidingView,
+    ScrollView
 } from "react-native";
 
 import { Textbox } from "../components/Textbox";
@@ -60,64 +62,53 @@ export const Login = (props) => {
         })
         .catch(err => console.error("ERROR: ", err))
     }
-    if (!props.user.signUp) {
-        return(
-            <View style={styles.loginContainer}>
-                <Text style={styles.title}>Auction Hall</Text>
-                <View style = {styles.inputContainer}>
-                    <Textbox 
-                        style = {styles.inputBox}
-                        handleChange = {handleChange}
-                        user = {user}
-                        name = "email"
-                        />
-                    <Textbox 
-                        style = {styles.inputBox}
-                        handleChange = {handleChange}
-                        user = {user}
-                        name = "password"
-                        secureTextEntry = {true}
-                        />
-                    <View style = {styles.loginButtonContainer}>
-                        <Text style={{textAlign: "center"}}>{user.message}</Text>
-                        <LoginButton 
-                            text = "Login"
-                            handleSubmit = {handleLogin}
-                        />
-                    </View>    
+    return(
+        <ScrollView contentContainerStyle={{flex: 1 , borderWidth: 1, borderColor: "blue"}}>
+            <KeyboardAvoidingView contentContainerStyle={{flex: 1 , borderWidth: 1, borderColor: "blue"}}>
+                <View style = {{flex: 1, borderWidth: 1, borderColor: "blue"}}>
+                    <View style={styles.loginContainer}>
+                        <Text style={styles.title}>Auction Hall</Text>
+                        {
+                            !props.user.signUp?
+                            <View style = {styles.inputContainer}>
+                                <Textbox 
+                                    style = {styles.inputBox}
+                                    handleChange = {handleChange}
+                                    user = {user}
+                                    name = "email"
+                                    />
+                                <Textbox 
+                                    style = {styles.inputBox}
+                                    handleChange = {handleChange}
+                                    user = {user}
+                                    name = "password"
+                                    secureTextEntry = {true}
+                                    />
+                                <View>
+                                    <Text style={{textAlign: "center"}}>{user.message}</Text>
+                                    <LoginButton 
+                                        text = "Login"
+                                        handleSubmit = {handleLogin}
+                                    />
+                                </View>    
+                            </View>
+                            :
+                            <>
+                                <SignUp handleSignUp = {props.handleSignUp}/>
+                                
+                            </>
+                        }        
+                    
+                    < LoginFooter
+                        handleSignUp = {props.handleSignUp} 
+                        user = {props.user}
+                    />  
                 </View>
-                < LoginFooter
-                    handleSignUp = {props.handleSignUp} 
-                    user = {props.user}
-                />
-              </View>
-        )
-    } else {
-        return(
-            <>
-                <Text style={styles.title}>Auction Hall</Text>
-                <SignUp handleSignUp = {props.handleSignUp}/>
-                < LoginFooter
-                    handleSignUp = {props.handleSignUp} 
-                    styles = {StyleSheet.create({
-                        footer: {
-                            marginTop: 300,
-                            marginBottom: 50,
-                            marginLeft: 100,
-                        },signUp: {
-                            color: "gray",
-                            fontSize: 20,
-                            fontWeight: "200"
-                        }
-                    })}
-                    user = {props.user}
-                />
-            </>
+                </View>
+            </KeyboardAvoidingView>
+        </ScrollView>
 
-            
-        )
-    }
-    
+    )  
 }
     
 const styles = StyleSheet.create({
@@ -127,16 +118,10 @@ const styles = StyleSheet.create({
         // borderWidth: 1,
         alignContent: 'center',
     },
-    footer: {
-        borderWidth: 5,
-        borderColor: 'black',
-        marginLeft: 20,
-    },
     loginContainer: {
         // borderColor: 'red',
         // borderWidth: 1,
         flex: 1,
-        alignContent: 'center',
         justifyContent: "space-between"
     },
     signUp: {
@@ -147,11 +132,10 @@ const styles = StyleSheet.create({
     title: {
         // borderColor: "blue",
         // borderWidth: 1,
-        flex: .3,
+        flex: .1,
         fontSize: 50,
         fontFamily: "courier",
         textAlign: 'center',
-        paddingTop: 100,
-        marginBottom: -100,
+        paddingTop: 20,
     },
 })

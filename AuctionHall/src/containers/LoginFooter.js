@@ -34,11 +34,10 @@ export const LoginFooter = (props) => {
 
 const styles = StyleSheet.create({
     container: {
-        // borderColor: "red",
-        // borderWidth: 1,
+        borderColor: "red",
+        borderWidth: 1,
         marginLeft: 20,
         flexDirection: 'row',
-        marginBottom: 50,
     },
     text: {
         fontSize: 20,

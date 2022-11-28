@@ -1,9 +1,13 @@
 import React, { useState } from "react"
-import { SafeAreaView, StyleSheet, StatusBar } from "react-native"
+import { Platform, SafeAreaView, StyleSheet, useWindowDimensions, View } from "react-native"
 import { Login } from "./src/containers/Login"
 import { Main } from "./src/containers/Main"
 
+
+
 const App = () => {
+  const { styles } = useStyle()
+
   const [user, setUser] = useState({
     user: {},
     loggedIn: false,
@@ -16,7 +20,7 @@ const App = () => {
   }
 
   return (
-    <SafeAreaView style = {styles.safeAreaView}>
+    <SafeAreaView style = {styles.container}>
       { !user.loggedIn ?
           <Login 
             handleSignUp = {handleSignUp}
@@ -33,17 +37,20 @@ const App = () => {
   )
 }
 
-const styles = StyleSheet.create({
-  login: {
-    borderColor: 'red',
-    borderWidth: 1,
-  },
-  safeAreaView: {
-    // borderColor: 'red',
-    // borderWidth: 1,
-    flex: 1,
-    marginTop: 35
-  },
-})
+const useStyle = () => {
+  const { width } = useWindowDimensions()
+  console.log(" DEVICE WIDTH: ", width)
+
+  const styles = StyleSheet.create({
+    container: {
+      borderColor: 'red',
+      borderWidth: 5,
+      flex: 1,
+      marginTop: Platform.OS === 'ios' && width > 400 ? 50: 0
+    }
+  })
+
+  return { styles }
+}
 
 export default App
