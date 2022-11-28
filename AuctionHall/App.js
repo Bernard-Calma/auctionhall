@@ -23,20 +23,21 @@ const App = () => {
   return (
     <SafeAreaView style = {styles.container}>
       <KeyboardAvoidingView style ={{flex: 1}}>
-        <ScrollView contentContainerStyle = {{flexGrow: 1}}>
         { !user.loggedIn ?
+          <ScrollView contentContainerStyle = {{flexGrow: 1}}>
             <Login 
               handleSignUp = {handleSignUp}
               user = {user}
               setUser = {setUser}
             />
+          </ScrollView>
           :
             <Main 
               user = {user}
               setUser = {setUser}
             />
         }
-        </ScrollView>
+        
       </KeyboardAvoidingView >
     </SafeAreaView>
   )
@@ -44,7 +45,7 @@ const App = () => {
 
 const useStyle = () => {
   const { width } = useWindowDimensions()
-  console.log(" DEVICE WIDTH: ", width)
+  // console.log(" DEVICE WIDTH: ", width)
 
   const styles = StyleSheet.create({
     container: {

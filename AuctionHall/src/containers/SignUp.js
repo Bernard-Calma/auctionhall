@@ -112,6 +112,7 @@ const styles = StyleSheet.create({
         // borderWidth: 1,
         flex: 1,
         alignContent: 'center',
+        margin: 10
     },
     footer: {
         marginTop: "auto",

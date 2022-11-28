@@ -114,8 +114,8 @@ const styles = StyleSheet.create({
     },
     loginContainer: {
         flex: 1,
-        borderColor: 'blue',
-        borderWidth: 1,
+        // borderColor: 'blue',
+        // borderWidth: 1,
     },
     signUp: {
         color: "gray",
