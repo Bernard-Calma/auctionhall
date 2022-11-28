@@ -41,7 +41,6 @@ export const ShowAuction = (props) => {
     })
     return (
         <View style={styles.container}>
-            <Text>Show Auction</Text>
             <View style={props.styles.imageContainer}>
                 < ImagePreview 
                     style = {props.styles.image}

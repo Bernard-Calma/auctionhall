@@ -78,7 +78,7 @@ export const Main = (props) => {
     // console.log("DATE COMPARISSON: ", new Date().getTime() < new Date(auction?.auction_date).getTime())
     return (
         <View style = {styles.mainContainer}>
-            <SearchBar style = {styles.searchBar}/>
+            {/* <SearchBar style = {styles.searchBar}/> */}
             {/* <TopNavBar 
                 style = { styles.topNavBar }
                 handleChangeView = {handleChangeView}

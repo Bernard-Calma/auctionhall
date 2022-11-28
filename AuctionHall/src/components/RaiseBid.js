@@ -45,7 +45,10 @@ export const RaiseBid = (props) => {
                             fontSize: 50,
                             textAlign: "center",
                             backgroundColor: "gray",
-                            overflow: "hidden"
+                            overflow: "hidden",
+                            width: "20%",
+                            alignSelf: "center"
+                            
                         }}
                         onPress = {() => handleRaiseBid()}    
                     >$</Text>

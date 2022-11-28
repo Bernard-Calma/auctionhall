@@ -7,11 +7,10 @@ export const AuctionStart = (props) => {
     // console.log("PROPS", props)
     return (
         <View style={styles.container}>
-            <Text>Auction Start</Text>
             <View style={styles.imageContainer}>
                 < ImagePreview
                     style = {styles.image}
-                    uri={props.auction.photo}
+                    photo={props.auction.photo}
                 />
                 
             </View>
