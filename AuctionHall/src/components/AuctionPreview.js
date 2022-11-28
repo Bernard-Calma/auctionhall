@@ -5,7 +5,7 @@ export const AuctionPreview = (props) => {
     return(
         <Image 
             style = {styles.photo}
-            source={{uri: props.auction.photo}}
+            source={{uri: `data:image/png;base64,${props.auction.photo}`}}
         />
     )
 }

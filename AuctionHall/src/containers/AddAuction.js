@@ -68,10 +68,12 @@ export const AddAuction = ({user, setView, getAuctions}) => {
 
     }
 
-    const uploadImageFromLibrary = () => launchImageLibrary({mediaType: 'photo'}, (assets) => {
+    const uploadImageFromLibrary = () => launchImageLibrary({mediaType: 'photo', includeBase64: "true"}, (assets) => {
         // console.log("Photo: ", assets.assets)
+        if(assets.didCancel) return // if upload is cancelled
+        console.log(assets.assets[0].base64)
         // console.log("Type: ", typeof(assets.assets[0].uri))
-        setbody({...body, photo: assets.assets[0].uri})
+        setbody({...body, photo: assets.assets[0].base64})
         // setbody({...body, photo: assets})
         // console.log("Body: ", body)
     })
@@ -124,7 +126,7 @@ export const AddAuction = ({user, setView, getAuctions}) => {
                     <>  
                         <Image
                             style = {styles.photo} 
-                            source={{uri: body.photo}}
+                            source={{uri: `data:image/png;base64,${body.photo}`}}
                         />
                     </>
                 }

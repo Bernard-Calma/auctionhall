@@ -45,7 +45,7 @@ export const ShowAuction = (props) => {
             <View style={props.styles.imageContainer}>
                 < ImagePreview 
                     style = {props.styles.image}
-                    uri={props.auction.photo}
+                    photo={props.auction.photo}
                 />
             </View>
             <View style={styles.titleContainer}>
