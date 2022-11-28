@@ -77,7 +77,7 @@ export const Main = (props) => {
     // console.log("DATE NOW: " ,new Date().getTime())
     // console.log("DATE COMPARISSON: ", new Date().getTime() < new Date(auction?.auction_date).getTime())
     return (
-        <SafeAreaView style = {styles.mainContainer}>
+        <View style = {styles.mainContainer}>
             <SearchBar style = {styles.searchBar}/>
             {/* <TopNavBar 
                 style = { styles.topNavBar }
@@ -141,7 +141,7 @@ export const Main = (props) => {
                 getAuctions = {() => getAuctions}
                 handleChangeView = {handleChangeView}
             />  
-        </SafeAreaView>
+        </View>
     )
 }
 

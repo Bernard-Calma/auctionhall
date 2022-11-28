@@ -1,5 +1,6 @@
 import React, { useState } from "react"
-import { Platform, SafeAreaView, StyleSheet, useWindowDimensions, View } from "react-native"
+import { KeyboardAvoidingView, Platform, SafeAreaView, StyleSheet, useWindowDimensions, View } from "react-native"
+import { ScrollView } from "react-native-gesture-handler"
 import { Login } from "./src/containers/Login"
 import { Main } from "./src/containers/Main"
 
@@ -21,18 +22,22 @@ const App = () => {
 
   return (
     <SafeAreaView style = {styles.container}>
-      { !user.loggedIn ?
-          <Login 
-            handleSignUp = {handleSignUp}
-            user = {user}
-            setUser = {setUser}
-          />
-        :
-          <Main 
-            user = {user}
-            setUser = {setUser}
-          />
-      }
+      <KeyboardAvoidingView style ={{flex: 1}}>
+        <ScrollView contentContainerStyle = {{flexGrow: 1}}>
+        { !user.loggedIn ?
+            <Login 
+              handleSignUp = {handleSignUp}
+              user = {user}
+              setUser = {setUser}
+            />
+          :
+            <Main 
+              user = {user}
+              setUser = {setUser}
+            />
+        }
+        </ScrollView>
+      </KeyboardAvoidingView >
     </SafeAreaView>
   )
 }
@@ -43,10 +48,11 @@ const useStyle = () => {
 
   const styles = StyleSheet.create({
     container: {
-      borderColor: 'red',
-      borderWidth: 5,
-      flex: 1,
-      marginTop: Platform.OS === 'ios' && width > 400 ? 50: 0
+      // borderColor: 'red',
+      // borderWidth: 1,
+      flexGrow: 1,
+      marginTop: Platform.OS === 'ios' && width > 400 ? 50: 0,
+      marginBottom: Platform.OS === 'ios' && width > 400 ? 20: 0
     }
   })
 
