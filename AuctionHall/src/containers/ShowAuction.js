@@ -70,7 +70,7 @@ export const ShowAuction = (props) => {
                     new Date().getTime() < new Date(props.auction?.auction_date).getTime()?
                     <>
                     <View style={styles.auctionDateContainer}>
-                        <Text style = {styles.descriptionText}>Auction Date: {date.toDateString()}</Text>
+                        <Text style = {styles.descriptionText}>Auction Date: {new Date(props.auction.auction_date).toDateString()}</Text>
                         <Text style = {styles.descriptionText}>Participants: {props.auction.participants.length}</Text>
                     </View>
                     <View style = {styles.addEditContainer}>
@@ -187,7 +187,7 @@ styles = StyleSheet.create({
         // borderWidth: 1,
     },
     winner: {
-        fontSize: 30,
+        fontSize: 25,
         margin: 5,
         fontFamily: "copperplate",
     }
