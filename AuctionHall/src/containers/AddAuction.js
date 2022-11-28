@@ -24,26 +24,29 @@ export const AddAuction = ({user, setView, getAuctions}) => {
     })
     let [date, setDate] = useState(body.auction_date);
     let [time, setTime] = useState(new Date())
-    const [show, setShow] = useState(true);
+    const [showDate, setShowDate] = useState(false);
+    const [showTime, setShowTime] = useState(false);
+    const [mode, setMode] = useState('date')
+
     // console.log("BODY : ", body)
     // console.log("DATE : ", body.auction_date)
     const onChangeDate = (event, selectedDate) => {
-        setShow(Platform.OS === 'ios');
         // console.log("SELECTED DATE: " , selectedDate)
         setDate(new Date(selectedDate))
         setbody({...body, auction_date: new Date(selectedDate)})
         // console.log(body)
         // console.log("After change")
+        setShowDate(Platform.OS === 'ios');
     }
 
     const onChangeTime = (event, selectedTime) => {
-        setShow(Platform.OS === 'ios');
         // console.log("SELECTED TIME : " , selectedTime.getHours(), selectedTime.getMinutes())
         let tempDate = date.setHours(selectedTime.getHours(), selectedTime.getMinutes(),0,0)
         // console.log("Selected Time: ", selectedTime)
         // console.log("Date after setting time: ", new Date(tempDate))
         setTime(new Date(tempDate))
         setbody({...body, auction_date: new Date(tempDate)})
+        setShowTime(Platform.OS === 'ios');
     }
     const handleChangeText = (text, name) => {
         setbody({...body, [name]: text})
@@ -150,25 +153,53 @@ export const AddAuction = ({user, setView, getAuctions}) => {
                             style = {styles.priceIncrementInput}
                         />
                     </View>
+                    {
+                        Platform.OS === 'ios' ?
+                        <>
+                            <View style = {styles.titleContainer}>
+                                <Text style = {styles.inputText}>Auction Date: </Text>
+                                <DateTimePicker 
+                                    value={date}
+                                    mode="date"
+                                    display='default'
+                                    onChange={onChangeDate}
+                                />
+                                <DateTimePicker 
+                                    value={time}
+                                    mode="time"
+                                    display = "default"
+                                    onChange={onChangeTime}
+                                />
+                            </View>
+                        </>
+                        :
+                        <>
+                            <Text style = {styles.dateText}>{`Auction Date: (${date.toLocaleString()})`}</Text>
+                            <View style = {styles.dateContainer}>
+                                <View style = {styles.date}>
+                                    <Button onPress = {() => setShowDate(true)} title = "Set Date"/>
+                                    {showDate && (<DateTimePicker 
+                                        value={date}
+                                        mode="date"
+                                        display='default'
+                                        onChange={onChangeDate}
+                                    />)}
 
-                    <View style = {styles.titleContainer}>
-                        <Text style = {styles.inputText}>Auction Date</Text>
-                        <DateTimePicker 
-                            value={date}
-                            mode="date"
-                            display='default'
-                            onChange={onChangeDate}
-                        />
-                    </View>
-                    <View style = {styles.titleContainer}>
-                        <Text style = {styles.inputText}>Auction Time</Text>
-                        <DateTimePicker 
-                            value={time}
-                            mode="time"
-                            display = "default"
-                            onChange={onChangeTime}
-                        />
-                    </View>
+                                </View>
+                                <View style = {styles.date}>
+                                    <Button onPress = {() => setShowTime(true)} title = "Set Time"/>
+                                    {showTime && (<DateTimePicker 
+                                        value={time}
+                                        mode="time"
+                                        display = "default"
+                                        onChange={onChangeTime}
+                                    />)}
+                                </View>
+                            </View>
+                        </>
+                        
+                    }
+                    
 
                     <View>
                         <Text style = {styles.descriptionText}>Description</Text>
@@ -194,6 +225,24 @@ const styles = StyleSheet.create({
     addYourPhoto: {
         textAlign: 'center',
         marginBottom: 20,
+        fontFamily: "copperplate"
+    },
+    date: {
+        margin: 5,
+        borderRadius: 50,
+        overflow: "hidden",
+        width: "30%",
+        alignSelf: "center"
+    },
+    dateContainer: {
+        // borderWidth: 1,
+        margin: 10,
+        flexDirection: "row",
+        justifyContent: "space-around"
+    },
+    dateText: {
+        fontSize: 20,
+        textAlign: "center",
         fontFamily: "copperplate"
     },
     descriptionContainer: {
