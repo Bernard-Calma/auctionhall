@@ -1,11 +1,8 @@
 import React from "react"
 import { useState, useCallback, useEffect } from "react"
-import { SafeAreaView, View, Text, StyleSheet } from "react-native"
+import {  View, Text, StyleSheet } from "react-native"
 import { ScrollView } from "react-native-gesture-handler"
 import { BottomNavBar } from "../components/BottomNavBar"
-
-import { SearchBar } from "../components/SearchBar"
-import { TopNavBar } from "../components/TopNavBar"
 
 // Containers
 import {AddAuction} from "./AddAuction"

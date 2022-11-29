@@ -1,12 +1,5 @@
 import React, { useState } from "react";
-import {
-    View,
-    Text,
-    StyleSheet,
-    KeyboardAvoidingView,
-    ScrollView
-} from "react-native";
-
+import { View, Text, StyleSheet } from "react-native";
 import { Textbox } from "../components/Textbox";
 import { LoginButton } from "../components/buttons/LoginButton";
 import { LoginFooter } from "./LoginFooter";
@@ -91,7 +84,10 @@ export const Login = (props) => {
                     </View>
                     :
                     <>
-                        <SignUp handleSignUp = {props.handleSignUp}/>
+                        <SignUp 
+                            handleSignUp = {props.handleSignUp}
+                            setUser = {props.setUser}
+                            />
                     </>
                 }        
             

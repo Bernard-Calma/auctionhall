@@ -15,8 +15,7 @@ export const NavIcon = (properties ) => {
                     source = {properties.imageFilePath}
                 />
             </Pressable>
-        </View>
-        
+        </View>    
     )
 }
 

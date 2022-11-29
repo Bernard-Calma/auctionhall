@@ -1,10 +1,5 @@
 import React, { useState } from "react";
-import {
-    View,
-    Text,
-    StyleSheet
-} from "react-native";
-
+import { View, Text, StyleSheet } from "react-native";
 import { Textbox } from "../components/Textbox";
 import { LoginButton } from "../components/buttons/LoginButton";
 
@@ -13,7 +8,7 @@ import { API_URL} from "@env"
 // Database
 const backendURL = API_URL
 const userRoute = "/api/v1/auctions/users"
-export const SignUp = () => {
+export const SignUp = (props) => {
     const [user, setUser] = useState({
         username: null,
         email: null,
@@ -55,10 +50,16 @@ export const SignUp = () => {
             })
             .then(response => response.json())
             .then(data => {
-                // console.log(user.email, "user email")
+                // Handle error when username is already taken
+                if (data.status.message.includes("user_username")) {data.status.message = "Username already exists."}
                 setUser({...user, "message":data.status.message})
-                // console.log("Status Code: ", data.status.code)
-                
+                if (data.status.code === 201) {
+                    props.setUser({
+                        user: data.data,
+                        loggedIn: true,
+                        signUp: false,
+                    })
+                }
                 // props.setUser()
             })
         }

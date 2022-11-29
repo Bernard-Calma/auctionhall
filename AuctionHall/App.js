@@ -14,7 +14,7 @@ const App = () => {
     loggedIn: false,
     signUp: false,
   })
-
+  console.log("Top Level: ", user)
   const handleSignUp = () => {
     setUser({...user, "signUp": !user.signUp})
     // console.log(user)

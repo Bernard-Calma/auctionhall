@@ -1,4 +1,4 @@
-import { TextInput, View, StyleSheet } from "react-native"
+import { TextInput, StyleSheet } from "react-native"
 
 export const Textbox = (props) => {
 

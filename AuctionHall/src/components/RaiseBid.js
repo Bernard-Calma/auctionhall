@@ -1,4 +1,4 @@
-import { Text, View } from "react-native"
+import { Text } from "react-native"
 
 // ENV
 import { API_URL} from "@env"
@@ -38,34 +38,35 @@ export const RaiseBid = (props) => {
                 </>
                 :
                 <>
-                    <Text style = {
-                        {
+                    <Text style = {{
+                                borderWidth: 1,
+                                borderRadius: 20,
+                                fontSize: 50,
+                                textAlign: "center",
+                                backgroundColor: "gray",
+                                overflow: "hidden",
+                                width: "20%",
+                                alignSelf: "center"      
+                            }}
+                        onPress = {() => handleRaiseBid()}    
+                    >
+                        $
+                    </Text>
+                </>
+            }
+        </>
+    )
+    else return <Text 
+                    style = {{
                             borderWidth: 1,
                             borderRadius: 20,
                             fontSize: 50,
                             textAlign: "center",
                             backgroundColor: "gray",
-                            overflow: "hidden",
-                            width: "20%",
-                            alignSelf: "center"
-                            
+                            overflow: "hidden"
                         }}
-                        onPress = {() => handleRaiseBid()}    
-                    >$</Text>
-                </>
-            }
-        </>
-    )
-    else return <Text style = {
-        {
-            borderWidth: 1,
-            borderRadius: 20,
-            fontSize: 50,
-            textAlign: "center",
-            backgroundColor: "gray",
-            overflow: "hidden"
-        }}
-        onPress = {() => handleRaiseBid()}    
-    >$</Text>
-
+                    onPress = {() => handleRaiseBid()}    
+                >
+                    $
+                </Text>
 }

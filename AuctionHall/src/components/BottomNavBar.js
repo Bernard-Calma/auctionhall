@@ -1,4 +1,3 @@
-import { useLinkProps } from "@react-navigation/native";
 import { useState } from "react";
 import { View } from "react-native";
 import { NavIcon } from "./NavIcons";

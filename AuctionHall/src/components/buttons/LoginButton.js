@@ -12,11 +12,12 @@ export const LoginButton = (props) => {
 
     )
 }
-    const styles = StyleSheet.create({
-        loginButton: {
-            fontSize: 25,
-            textAlign: "right",
-            marginLeft: 200,
-            marginRight: 25,
-        }
-    })
+
+const styles = StyleSheet.create({
+    loginButton: {
+        fontSize: 25,
+        textAlign: "right",
+        marginLeft: 200,
+        marginRight: 25,
+    }
+})
