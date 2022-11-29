@@ -30,9 +30,19 @@ export const Profile = (props) => {
             )
     }
 
+    // Logout Function
+    const handleLogout = () => {
+        fetch(`${backendURL}${auctionRoute}logout`)
+        .then(response => response.json())
+        .then(data => {
+            alert(data.status.message)
+            props.setUser({})
+        })
+    }
+
     return (
         <View style = {styles.container}>
-            <View>
+            <View style={{flex: 1}}>
             {
                 !editProfile?
                 <>
@@ -63,7 +73,15 @@ export const Profile = (props) => {
                 </>
             }
             </View>
-            
+            <View style = {styles.logoutContainer}>
+                <Button
+                    onPress={()=>{
+                        console.log("Log Out")
+                        handleLogout()
+                    }}
+                    title = "Log Out"
+                />
+            </View>
         </View>
     )
     
@@ -75,6 +93,11 @@ const styles = StyleSheet.create({
         // borderWidth: 1,
         // borderColor: "red",
         flex: 1,
+    },
+    logoutContainer: {
+        // borderWidth: 1,
+        // borderColor: "red",
+        alignItems: "center"
     },
     text: {
         fontSize: 20,
