@@ -60,7 +60,7 @@ export const AddAuction = ({user, setView, getAuctions}) => {
         launchCamera(
             {
                 mediaType: 'photo',
-                cameraType: "front"
+                cameraType: "back"
         
             }, (asset) => {
             setbody({...body, photo: asset.uri})
@@ -68,7 +68,7 @@ export const AddAuction = ({user, setView, getAuctions}) => {
 
     }
 
-    const uploadImageFromLibrary = () => launchImageLibrary({mediaType: 'photo', includeBase64: "true"}, (assets) => {
+    const uploadImageFromLibrary = () => launchImageLibrary({mediaType: 'photo', includeBase64: true}, (assets) => {
         // console.log("Photo: ", assets.assets)
         if(assets.didCancel) return // if upload is cancelled
         console.log(assets.assets[0].base64)
@@ -101,18 +101,18 @@ export const AddAuction = ({user, setView, getAuctions}) => {
             style = {styles.keyboardAvoidingView}
             keyboardShould
         >
-            <View style = {styles.inner}>  
+            <View style = {{flex: 1}}>  
                 { body.photo === ""
                     ?
                     <View style = {styles.photoContainer}>
-                        <View style = {styles.selectPhotoContainer}>
+                        {/* <View style = {styles.selectPhotoContainer}>
                             <Pressable
                                 onPress = {() => uploadFromCamera()}
                             >   
                                 <Text style = {styles.selectPhoto}>Use Camera</Text>    
                             </Pressable>
                             
-                        </View>
+                        </View> */}
                         <View style = {styles.selectPhotoContainer}>
                             <Pressable
                                 onPress={()=>uploadImageFromLibrary()}
@@ -211,7 +211,7 @@ export const AddAuction = ({user, setView, getAuctions}) => {
                                 multiline = {true}
                             />
                     </View>
-                    <View style = {{marginBottom: 100}}>
+                    <View style = {{marginBottom: 100, borderWidth: 1}}>
                         <Button 
                             onPress = {handleAddAuction}
                             title = "Post Auction"
@@ -248,8 +248,10 @@ const styles = StyleSheet.create({
         fontFamily: "copperplate"
     },
     descriptionContainer: {
+        flex: 1,
         // borderWidth: 1,
         // borderColor: "blue",
+        justifyContent: "space-between",
     },
     descriptionInput: {
       borderWidth: 1,

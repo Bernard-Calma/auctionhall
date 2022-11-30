@@ -16,10 +16,6 @@ export const BottomNavBar = (props) => {
         path: require("../assets/images/camera.png"),
     },
     {
-        title: 'messages',
-        path: require("../assets/images/messages.png"),
-    },
-    {
         title: 'profile',
         path: require("../assets/images/profile.png"),
     },

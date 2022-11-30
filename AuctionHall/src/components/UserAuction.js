@@ -39,7 +39,7 @@ export const UserAuction = (props) => {
         <View style = {styles.containter}>
             <Image
                 style = {styles.photo}
-                source={{uri: props.auction.photo}}
+                source={{uri: `data:image/png;base64,${props.auction.photo}`}}
             />
             <View style = {styles.titleContainer}>
                 <Text
